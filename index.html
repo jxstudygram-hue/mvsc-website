@@ -1,0 +1,2997 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คณะกรรมการนักเรียน โรงเรียนมหาวชิราวุธ จังหวัดสงขลา</title>
+    <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=1sKtFgqq3E8DAzQ5SNLPlZAabaUoAJjpV&sz=w400">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-primary: #f8fafc;
+            --bg-bento: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --primary: #1e3a8a; /* Navy Blue */
+            --accent: #4338ca;  /* Indigo */
+            --border-color: rgba(226, 232, 240, 0.8);
+            --shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 8px -1px rgba(15, 23, 42, 0.03);
+            --bento-radius: 18px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0b0f19;
+            --bg-bento: #151c2c;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --primary: #ffffff;
+            --accent: #6366f1;
+            --border-color: rgba(30, 41, 59, 0.7);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Kanit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: var(--transition);
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header & Navbar */
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        [data-theme="dark"] header {
+            background-color: rgba(21, 28, 44, 0.8);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .brand img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .brand-text h1 {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--primary);
+        }
+        
+        .brand-text p {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .menu-list {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 4px;
+        }
+
+        .menu-item {
+            position: relative;
+        }
+
+        .menu-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 400;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .menu-link:hover, .menu-item:hover .menu-link, .menu-link.active {
+            color: var(--primary);
+            background-color: rgba(67, 56, 202, 0.06);
+        }
+
+        /* Dropdown */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--bg-bento);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            min-width: 200px;
+            padding: 8px;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+        }
+
+        .menu-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(4px);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 8px 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            border-radius: 6px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(67, 56, 202, 0.06);
+            color: var(--primary);
+            padding-left: 16px;
+        }
+
+        /* Actions */
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-left: 12px;
+        }
+
+        /* Search Box Animation */
+        .search-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .search-input {
+            width: 0;
+            height: 38px;
+            background: var(--bg-primary);
+            border: 1px solid transparent;
+            outline: none;
+            padding: 0;
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--text-primary);
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s;
+        }
+
+        .search-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        .search-btn:hover {
+            background: rgba(67, 56, 202, 0.06);
+            color: var(--primary);
+        }
+
+        .search-container.active .search-input {
+            width: 200px;
+            padding: 0 15px 0 35px;
+            border-color: var(--border-color);
+        }
+
+        .search-container.active .search-btn {
+            position: absolute;
+            left: 0;
+            z-index: 2;
+        }
+
+        /* Search Results Dropdown */
+        .search-results-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            width: 360px;
+            background: var(--bg-bento);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            box-shadow: 0 16px 40px -4px rgba(15, 23, 42, 0.14), 0 4px 12px -2px rgba(15, 23, 42, 0.06);
+            z-index: 1500;
+            overflow: hidden;
+            display: none;
+            max-height: 460px;
+            flex-direction: column;
+        }
+        .search-results-dropdown.show {
+            display: flex;
+        }
+        .search-results-header {
+            padding: 12px 16px 8px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border-bottom: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+        .search-results-list {
+            overflow-y: auto;
+            flex: 1;
+        }
+        .search-result-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+            border-bottom: 1px solid var(--border-color);
+            text-decoration: none;
+        }
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+        .search-result-item:hover {
+            background: rgba(67, 56, 202, 0.05);
+        }
+        .search-result-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            background: rgba(67, 56, 202, 0.08);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .search-result-text {
+            flex: 1;
+            min-width: 0;
+        }
+        .search-result-title {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .search-result-title mark {
+            background: rgba(99, 102, 241, 0.15);
+            color: var(--accent);
+            border-radius: 2px;
+            padding: 0 1px;
+        }
+        .search-result-sub {
+            font-size: 12px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-weight: 300;
+        }
+        .search-result-page-badge {
+            font-size: 10px;
+            padding: 2px 7px;
+            border-radius: 10px;
+            background: rgba(67, 56, 202, 0.07);
+            color: var(--accent);
+            font-weight: 500;
+            flex-shrink: 0;
+            align-self: flex-start;
+            margin-top: 2px;
+            white-space: nowrap;
+        }
+        .search-results-empty {
+            padding: 28px 16px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+        .search-results-empty i {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 8px;
+            opacity: 0.5;
+        }
+
+        .action-icon-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        .action-icon-btn:hover {
+            background: rgba(67, 56, 202, 0.06);
+            color: var(--primary);
+        }
+
+        .lang-btn {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Main Layout - Bento Grid */
+        main {
+            max-width: 1400px;
+            margin: 90px auto 40px auto;
+            padding: 0 24px;
+            flex: 1;
+            width: 100%;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(160px, auto);
+            gap: 20px;
+        }
+
+        /* Bento Cards Base */
+        .bento-card {
+            background-color: var(--bg-bento);
+            border: 1px solid var(--border-color);
+            border-radius: var(--bento-radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -4px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+            border-color: rgba(67, 56, 202, 0.2);
+        }
+
+        /* Bento Grid Span Mapping */
+        .span-full { grid-column: span 4; }
+        .span-2-2 { grid-column: span 2; grid-row: span 2; }
+        .span-2-1 { grid-column: span 2; grid-row: span 1; }
+        .span-1-2 { grid-column: span 1; grid-row: span 2; }
+        .span-1-1 { grid-column: span 1; grid-row: span 1; }
+
+        /* Card Content Styles */
+        .card-tag {
+            align-self: flex-start;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: rgba(67, 56, 202, 0.08);
+            color: var(--accent);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .card-subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+
+        .card-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* Special Card Types */
+        .type-hero, .type-hero-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #ffffff;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Hero ที่มีรูปพื้นหลัง */
+        .type-hero.has-bg-img, .type-hero-banner.has-bg-img {
+            background: none;
+        }
+        .hero-bg-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 0;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 25, 47, 0.95), rgba(10, 25, 47, 0.4));
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .type-hero .card-tag, .type-hero-banner .card-tag { background: rgba(255, 255, 255, 0.2); color: #ffffff; }
+
+        .type-section-title {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            grid-column: span 4;
+            padding: 20px 0 8px 0;
+            min-height: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .type-section-title:hover { transform: none; box-shadow: none; }
+        .type-section-title .card-title {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -1px;
+            line-height: 1.15;
+            position: relative;
+            padding-bottom: 12px;
+        }
+        .type-section-title .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 48px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        .type-section-title .card-subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-top: 10px;
+            font-weight: 400;
+        }
+
+        /* Hero Banner Fullscreen */
+        .type-hero.span-full, .type-hero-banner.span-full,
+        .type-hero.span-2-2, .type-hero-banner.span-2-2 {
+            grid-column: 1 / -1;
+            grid-row: span 1;
+            min-height: calc(500px);
+            border-radius: 20px;
+            padding: 0;
+            justify-content: flex-end;
+        }
+        .type-hero .hero-content, .type-hero-banner .hero-content {
+            justify-content: flex-end;
+            padding: 48px 52px;
+            gap: 10px;
+        }
+        .type-hero .card-title, .type-hero-banner .card-title {
+            font-size: clamp(52px, 8vw, 52px);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -2px;
+            color: #ffffff;
+            margin: 0;
+        }
+        .type-hero .card-subtitle, .type-hero-banner .card-subtitle {
+            font-size: clamp(15px, 2vw, 20px);
+            color: rgba(255,255,255,0.85);
+            font-weight: 400;
+            margin: 0;
+        }
+        .type-hero .card-desc, .type-hero-banner .card-desc {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            max-width: 800px;
+        }
+        /* For non-fullscreen hero (no span-full/span-2-2) keep original layout */
+        .type-hero:not(.span-full):not(.span-2-2),
+        .type-hero-banner:not(.span-full):not(.span-2-2) {
+            min-height: 200px;
+        }
+        .type-hero:not(.span-full):not(.span-2-2) .hero-content,
+        .type-hero-banner:not(.span-full):not(.span-2-2) .hero-content {
+            padding: 24px;
+            justify-content: flex-end;
+        }
+        @media (max-width: 768px) {
+            .type-hero.span-full, .type-hero-banner.span-full,
+            .type-hero.span-2-2, .type-hero-banner.span-2-2 {
+                min-height: 60vh;
+            }
+            .type-hero .hero-content, .type-hero-banner .hero-content {
+                padding: 32px 28px;
+            }
+        }
+        .member-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--border-color);
+            margin-bottom: 12px;
+            background: #eee;
+        }
+        .member-meta {
+            font-size: 12px;
+            background: rgba(30, 58, 138, 0.06);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--primary);
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .card-link-btn {
+            align-self: flex-start;
+            margin-top: 12px;
+            font-size: 12px;
+            color: var(--accent);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+        .card-link-btn:hover { text-decoration: underline; }
+        .type-hero .card-link-btn, .type-hero-banner .card-link-btn { color: #ffffff; }
+
+        /* Photo Gallery Area placeholder */
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            min-height: 180px;
+            background: rgba(67, 56, 202, 0.03);
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            gap: 8px;
+        }
+
+        /* News Popup Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .bento-modal {
+            background-color: var(--bg-bento);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            width: 90%;
+            max-width: 600px;
+            padding: 32px;
+            box-shadow: var(--shadow);
+            transform: scale(0.9);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .modal-overlay.active .bento-modal {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-img-placeholder {
+            width: 100%;
+            height: 240px;
+            background: rgba(67, 56, 202, 0.04);
+            border-radius: 14px;
+            border: 2px dashed var(--border-color);
+            margin: 16px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+        }
+
+        /* Loading Spinner */
+        .loading-container {
+            grid-column: span 4;
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-bento);
+            border-top: 1px solid var(--border-color);
+            padding: 60px 24px 30px 24px;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .footer-brand p.address {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background: var(--primary);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .footer-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 300;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 4px;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        /* Floating Contact Action */
+        .messenger-floating {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #006aff, #00b2ff);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            box-shadow: 0 4px 16px rgba(0, 106, 255, 0.3);
+            cursor: pointer;
+            z-index: 1500;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .messenger-floating:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* ── DETAIL MODAL (Member & Policy) ── */
+        .detail-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 25, 47, 0.45);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .detail-modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .detail-modal-box {
+            background: var(--bg-bento);
+            border: 1px solid var(--border-color);
+            width: 100%;
+            max-width: 680px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+            overflow: hidden;
+            position: relative;
+            transform: translateY(30px);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            max-height: 90vh;
+        }
+        .detail-modal-overlay.open .detail-modal-box {
+            transform: translateY(0);
+        }
+        .detail-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        .detail-modal-close:hover {
+            background: rgba(67,56,202,0.08);
+            color: var(--primary);
+        }
+        .detail-modal-body {
+            display: flex;
+            flex-direction: row;
+            gap: 32px;
+            padding: 40px;
+            overflow-y: auto;
+        }
+        .dm-left {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 190px;
+        }
+        .dm-big-photo {
+            width: 180px;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(30, 58, 138, 0.12);
+            border: 1px solid var(--border-color);
+        }
+        .dm-policy-icon {
+            width: 130px;
+            height: 130px;
+            border-radius: 20px;
+            background: #FEF3C7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.2);
+            overflow: hidden;
+        }
+        .dm-policy-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+        .dm-policy-icon i {
+            font-size: 60px;
+            color: #F59E0B;
+        }
+        .dm-right {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-width: 0;
+        }
+        .dm-tag {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .dm-name {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.25;
+            margin-top: -2px;
+        }
+        .dm-role {
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+        .dm-divider {
+            height: 1px;
+            background: var(--border-color);
+            width: 100%;
+            margin: 6px 0;
+        }
+        .dm-bio-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .dm-bio-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+        .dm-meta-box {
+            background: rgba(67, 56, 202, 0.04);
+            border-left: 4px solid var(--accent);
+            padding: 12px 16px;
+            border-radius: 0 12px 12px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 4px;
+        }
+        .dm-meta-row {
+            font-size: 13px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .dm-meta-row i {
+            color: var(--accent);
+            margin-top: 2px;
+            flex-shrink: 0;
+            width: 16px;
+            text-align: center;
+        }
+        .dm-meta-row strong {
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+        .dm-ig-modal-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: linear-gradient(45deg, #7C3AED, #EC4899);
+            color: #fff;
+            text-decoration: none;
+            padding: 9px 20px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: 0 6px 15px rgba(236, 72, 153, 0.3);
+            transition: all 0.3s ease;
+            align-self: flex-start;
+            margin-top: 4px;
+        }
+        .dm-ig-modal-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(236, 72, 153, 0.45);
+        }
+        .dm-ig-modal-btn svg { width: 16px; height: 16px; fill: currentColor; }
+        @media (max-width: 600px) {
+            .detail-modal-body { flex-direction: column; padding: 28px 20px; gap: 20px; align-items: center; text-align: center; }
+            .dm-left { width: 100%; }
+            .dm-big-photo { width: 150px; height: 200px; }
+            .dm-ig-modal-btn { align-self: center; }
+        }
+
+        /* ── DIRECTORY PAGE: Premium Member Cards ── */
+        .directory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 28px;
+            grid-column: 1 / -1;
+            padding: 8px 0 32px 0;
+        }
+        .dir-section-header {
+            grid-column: 1 / -1;
+            padding: 20px 0 8px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .dir-section-header h2 {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--primary);
+            display: inline-block;
+            position: relative;
+            letter-spacing: -1px;
+            line-height: 1.15;
+            padding-bottom: 12px;
+        }
+        .dir-section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 48px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        .dir-section-header p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        .premium-member-card {
+            background: var(--bg-bento);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            padding: 28px 20px 24px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .premium-member-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        .premium-member-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(67, 56, 202, 0.15);
+            border-color: rgba(67, 56, 202, 0.3);
+        }
+        .premium-member-card.chairman-card {
+            border: 2px solid var(--accent);
+            background: linear-gradient(to bottom, rgba(67, 56, 202, 0.04), transparent), var(--bg-bento);
+        }
+        @media (min-width: 900px) {
+            .premium-member-card.chairman-card {
+                grid-column: 1 / -1;
+                justify-self: center;
+                width: 100%;
+                max-width: 400px;
+            }
+            .premium-member-card.chairman-card .pm-avatar-wrap {
+                width: 190px;
+                height: 190px;
+            }
+        }
+        .pm-avatar-wrap {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            padding: 5px;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.2), rgba(147, 197, 253, 0.4));
+            margin-bottom: 20px;
+            box-shadow: 0 8px 24px rgba(30, 58, 138, 0.15);
+        }
+        .pm-avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .premium-member-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            letter-spacing: -0.3px;
+            line-height: 1.3;
+        }
+        .pm-nickname {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 14px;
+        }
+        .pm-tags {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+        .pm-tag-role {
+            font-size: 12px;
+            font-weight: 600;
+            color: #ffffff;
+            background: #1e3a8a;
+            padding: 5px 14px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(30, 58, 138, 0.2);
+        }
+        .pm-tag-class {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary);
+            background: rgba(30, 58, 138, 0.06);
+            border: 1px solid rgba(30, 58, 138, 0.15);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+        .pm-ig-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            background: linear-gradient(45deg, #7C3AED, #EC4899);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 9px 20px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: 0 6px 15px rgba(236, 72, 153, 0.3);
+            transition: all 0.3s ease;
+            max-width: 90%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .pm-ig-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(236, 72, 153, 0.45);
+        }
+        .pm-ig-btn svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+
+        /* ── POLICY PAGE: Full Card Grid ── */
+        .policy-full-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+            grid-column: 1 / -1;
+            padding-bottom: 32px;
+        }
+        .policy-full-card {
+            background: var(--bg-bento);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-height: 300px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .policy-full-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(67, 56, 202, 0.12);
+            border-color: rgba(67, 56, 202, 0.3);
+        }
+        .pf-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+            margin-bottom: 4px;
+        }
+        .pf-icon-box {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 22px;
+            box-shadow: 0 6px 15px rgba(67, 56, 202, 0.2);
+        }
+        .pf-card-num {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--text-secondary);
+            opacity: 0.12;
+            line-height: 1;
+        }
+        .policy-full-card h3 {
+            font-size: 19px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+            line-height: 1.3;
+        }
+        .policy-full-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.6;
+        }
+        .pf-tag-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(67, 56, 202, 0.06);
+            color: var(--accent);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            border: 1px solid rgba(67, 56, 202, 0.1);
+            align-self: flex-start;
+        }
+        .pf-progress-wrap {
+            margin-top: auto;
+            padding-top: 14px;
+        }
+        .pf-progress-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        .pf-progress-bg {
+            width: 100%;
+            height: 6px;
+            background: rgba(67, 56, 202, 0.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .pf-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #38BDF8);
+            border-radius: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .span-full, .type-section-title { grid-column: span 2; }
+        }
+        @media (max-width: 768px) {
+            .menu-list { display: none; }
+            .bento-grid { grid-template-columns: 1fr; }
+            .span-full, .span-2-2, .span-2-1, .span-1-2, .span-1-1, .type-section-title { grid-column: span 1; grid-row: span 1; }
+            .footer-container { grid-template-columns: 1fr; }
+            .directory-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+            .policy-full-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .directory-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ── PAGE LOADER ── */
+        #page-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #f0f4ff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        #page-loader.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .loader-logo {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            border-radius: 16px;
+            animation: loader-pop 0.7s cubic-bezier(0.34,1.56,0.64,1) both,
+                       loader-float 2.4s 0.7s ease-in-out infinite;
+        }
+        @keyframes loader-pop {
+            from { opacity: 0; transform: scale(0.6); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+        @keyframes loader-float {
+            0%, 100% { transform: translateY(0px); }
+            50%      { transform: translateY(-12px); }
+        }
+        .loader-title {
+            font-size: clamp(13px, 2.2vw, 17px);
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            color: #1e3a8a;
+            text-transform: uppercase;
+            animation: loader-fade 0.6s 0.2s ease both;
+        }
+        @keyframes loader-fade {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .loader-bar-wrap {
+            width: min(280px, 65vw);
+            height: 3px;
+            background: #dde4f5;
+            border-radius: 99px;
+            overflow: hidden;
+            animation: loader-fade 0.5s 0.35s ease both;
+        }
+        .loader-bar-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 99px;
+            background: linear-gradient(90deg, #1e3a8a, #4338ca, #60a5fa);
+            background-size: 200% 100%;
+            animation: loader-slide 1.8s 0.4s cubic-bezier(0.4,0,0.2,1) forwards,
+                       loader-shimmer 1.4s 0.4s ease infinite;
+        }
+        @keyframes loader-slide {
+            0%   { width: 0%; }
+            60%  { width: 75%; }
+            100% { width: 100%; }
+        }
+        @keyframes loader-shimmer {
+            0%   { background-position: 100% 0; }
+            100% { background-position: -100% 0; }
+        }
+
+        /* ── HOME MARQUEE SLIDES ── */
+        .home-marquee-section {
+            grid-column: 1 / -1;
+            margin-top: 20px;
+        }
+        .party-header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .party-title-main {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            border-left: none;
+            padding-left: 0;
+            margin-bottom: 8px;
+        }
+        .party-title-main i {
+            color: var(--accent);
+            font-size: 24px;
+        }
+        .party-title-sub {
+            font-size: 15px;
+            color: var(--text-secondary);
+            padding-left: 0;
+        }
+        .marquee-wrapper {
+            overflow: hidden;
+            width: 100%;
+            padding: 10px 0;
+        }
+        .marquee-track {
+            display: flex;
+            gap: 16px;
+            width: max-content;
+            animation: scrollMarquee 55s linear infinite;
+        }
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+        @keyframes scrollMarquee {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee-photo {
+            width: 220px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 14px;
+            box-shadow: 0 6px 20px rgba(15,23,42,0.08);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex-shrink: 0;
+        }
+        .marquee-photo:hover {
+            transform: scale(1.04);
+            box-shadow: 0 12px 30px rgba(67,56,202,0.15);
+        }
+
+        /* Policy Cards */
+        .policy-slide-card {
+            width: 270px;
+            min-height: 310px;
+            flex-shrink: 0;
+            background-color: var(--bg-bento);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .policy-slide-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 36px rgba(67,56,202,0.12);
+            border-color: rgba(67,56,202,0.25);
+        }
+        .policy-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+        .policy-icon-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+        }
+        .policy-card-num {
+            font-size: 28px;
+            font-weight: 700;
+            color: rgba(67,56,202,0.12);
+        }
+        .policy-slide-card h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        .policy-slide-card p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+        .policy-category-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(67,56,202,0.06);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+        .policy-progress-bar-wrap {
+            margin-top: 16px;
+        }
+        .policy-progress-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        .policy-progress-bg {
+            width: 100%;
+            height: 6px;
+            background: rgba(67,56,202,0.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .policy-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #38BDF8);
+            border-radius: 10px;
+        }
+
+        /* View All Button */
+        .home-section-view-all {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .home-section-view-all button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Kanit', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-members, .btn-policy {
+            background: linear-gradient(135deg, #0066FF, #1D4ED8);
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(67,56,202,0.25);
+        }
+        .btn-members:hover, .btn-policy:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(67,56,202,0.35); }
+
+        /* ── PAGE TRANSITION ── */
+        #bento-main-container {
+            transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.4,0,0.2,1);
+        }
+        #bento-main-container.page-exit {
+            opacity: 0;
+            transform: translateY(14px);
+            pointer-events: none;
+        }
+        #bento-main-container.page-enter {
+            animation: pageEnterAnim 0.32s cubic-bezier(0.16,1,0.3,1) both;
+        }
+        @keyframes pageEnterAnim {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── HOME NEWS BANNER SLIDER ── */
+        .news-banner-section {
+            grid-column: 1 / -1;
+            position: relative;
+            border-radius: var(--bento-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: var(--bg-bento);
+            border: 1px solid var(--border-color);
+            width: 100%;
+            aspect-ratio: 16 / 9;
+        }
+        .news-slides-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+        }
+        .news-slide {
+            flex-shrink: 0;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            cursor: pointer;
+        }
+        .news-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .news-slide-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10,25,47,0.82) 0%, rgba(10,25,47,0.1) 55%, transparent 100%);
+        }
+        .news-slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px 32px;
+            color: #fff;
+        }
+        .news-slide-tag {
+            display: inline-block;
+            background: rgba(239,68,68,0.85);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .news-slide-title {
+            font-size: clamp(15px, 2.2vw, 22px);
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 4px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+        .news-slide-sub {
+            font-size: 13px;
+            color: rgba(255,255,255,0.75);
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        /* Prev / Next arrows */
+        .news-banner-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.18);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.2s;
+        }
+        .news-banner-arrow:hover { background: rgba(255,255,255,0.32); }
+        .news-banner-arrow.prev { left: 14px; }
+        .news-banner-arrow.next { right: 14px; }
+        /* Dot indicators */
+        .news-banner-dots {
+            position: absolute;
+            bottom: 14px;
+            right: 28px;
+            display: flex;
+            gap: 7px;
+            z-index: 10;
+        }
+        .news-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.45);
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+        .news-dot.active {
+            background: #fff;
+            width: 22px;
+            border-radius: 4px;
+        }
+        /* Placeholder state (ไม่มีข่าว) */
+        .news-banner-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--text-secondary);
+            background: rgba(67,56,202,0.03);
+        }
+        .news-banner-placeholder i { font-size: 36px; color: var(--accent); opacity: 0.4; }
+        .news-banner-placeholder p { font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE LOADER -->
+    <div id="page-loader">
+        <img
+            src="https://drive.google.com/thumbnail?id=1sKtFgqq3E8DAzQ5SNLPlZAabaUoAJjpV&sz=w400"
+            alt="Logo"
+            class="loader-logo"
+            onerror="this.style.display='none'">
+        <div class="loader-title">MAHAVAJIRAVUDH STUDENT COMMITTEE</div>
+        <div class="loader-bar-wrap">
+            <div class="loader-bar-fill" id="loaderBarFill"></div>
+        </div>
+    </div>
+
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="brand" onclick="navigateToPage('home'); return false;">
+                <img src="https://drive.google.com/thumbnail?id=1sKtFgqq3E8DAzQ5SNLPlZAabaUoAJjpV&sz=w400" alt="Logo">
+                <div class="brand-text">
+                    <h1 id="txt-logo-title">คณะกรรมการนักเรียน</h1>
+                    <p id="txt-logo-sub">โรงเรียนมหาวชิราวุธ จังหวัดสงขลา</p>
+                </div>
+            </a>
+
+            <nav>
+                <ul class="menu-list">
+                    <li class="menu-item"><a class="menu-link active" href="#" id="nav-home" onclick="navigateToPage('home'); return false;">หน้าแรก</a></li>
+                    <li class="menu-item">
+                        <a class="menu-link" id="nav-news">ข่าวสาร<i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" id="nav-news-general" href="#" onclick="navigateToPage('home', 'news'); return false;">ข่าวประชาสัมพันธ์</a>
+                            <a class="dropdown-item" id="nav-news-activity" href="#" onclick="navigateToPage('news-announce'); return false;">ประกาศคณะกรรมการนักเรียน</a>
+                            <a class="dropdown-item" id="nav-policy" href="#" onclick="navigateToPage('policy'); return false;">งานนโยบาย</a>
+                        </div>
+                    </li>
+                    <li class="menu-item">
+                        <a class="menu-link" id="nav-activity">กิจกรรมนักเรียน <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" id="nav-activity-makewish" href="#" onclick="navigateToPage('activity-makewish'); return false;">Make A Wish</a>
+                            <a class="dropdown-item" id="nav-activity-other" href="#" onclick="navigateToPage('activity-other'); return false;">อื่นๆ</a>
+                        </div>
+                    </li>
+                    <li class="menu-item"><a class="menu-link" href="#" id="nav-gallery" onclick="navigateToPage('Gallery'); return false;">ประมวลภาพ</a></li>
+                    <li class="menu-item">
+                        <a class="menu-link" id="nav-system">ระบบ <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" id="nav-system-report" href="#" onclick="navigateToPage('system-report'); return false;">แจ้งอุปกรณ์ชำรุด/เสียหาย</a>
+                            <a class="dropdown-item" id="nav-system-election" href="#" onclick="navigateToPage('system-election'); return false;">แจ้งผลการเลือกตั้ง</a>
+                        </div>
+                    </li>
+                    <li class="menu-item">
+                        <a class="menu-link" id="nav-about">เกี่ยวกับเรา <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" id="nav-about-symbol" href="#" onclick="navigateToPage('about-symbol'); return false;">สัญลักษณ์</a>
+                            <a class="dropdown-item" id="nav-about-vision" href="#" onclick="navigateToPage('about-vision'); return false;">วิสัยทัศน์/พันธกิจ/เป้าประสงค์</a>
+                            <a class="dropdown-item" id="nav-about-structure" href="#" onclick="navigateToPage('about-structure'); return false;">โครงสร้างคณะกรรมการนักเรียน</a>
+                            <a class="dropdown-item" id="nav-about-directory" href="#" onclick="navigateToPage('directory'); return false;">ทำเนียบคณะกรรมการนักเรียน</a>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    <div class="search-container" id="searchContainer">
+                        <button class="search-btn" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <input type="text" class="search-input" id="searchInput" placeholder="ค้นหาภายในเว็บ...">
+                        <div class="search-results-dropdown" id="searchResultsDropdown">
+                            <div class="search-results-header" id="searchResultsHeader">ผลการค้นหา</div>
+                            <div class="search-results-list" id="searchResultsList"></div>
+                        </div>
+                    </div>
+                    <button class="action-icon-btn" id="themeToggleBtn"><i class="fa-solid fa-moon"></i></button>
+                    <button class="action-icon-btn lang-btn" id="langToggleBtn">EN</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="bento-grid" id="bento-main-container">
+            <div class="loading-container" id="loading-view">
+                <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 28px; color: var(--accent); margin-bottom: 10px;"></i>
+                <p>กำลังเชื่อมต่อข้อมูลแบบเรียลไทม์กับ Google Sheets...</p>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="newsModal">
+        <div class="bento-modal">
+            <button class="close-modal" id="closeModalBtn"><i class="fa-solid fa-xmark"></i></button>
+            <span class="card-tag" style="background: rgba(239, 68, 68, 0.1); color: #ef4444;" id="modal-tag">LATEST NEWS</span>
+            <h2 class="card-title" style="margin-top: 10px; font-size: 22px;" id="modal-title">ข่าวสารและประกาศด่วน</h2>
+            <div class="modal-img-placeholder">
+                <i class="fa-regular fa-image" style="font-size: 40px; margin-bottom: 12px;"></i>
+                <span style="font-size: 13px;" id="modal-img-lbl">กล่องสำหรับใส่รูปภาพข่าวสาร (ไว้ใส่ในภายหลัง)</span>
+            </div>
+            <p class="card-desc" style="font-size: 14px;" id="modal-desc">
+                ขอเชิญชวนนักเรียนโรงเรียนมหาวชิราวุธ จังหวัดสงขลา ร่วมติดตามและแสดงความคิดเห็นต่อนโยบายประจำปีการศึกษา เพื่อพัฒนาโรงเรียนของพวกเราไปด้วยกัน
+            </p>
+        </div>
+    </div>
+
+    <!-- Detail Modal: Member & Policy -->
+    <div class="detail-modal-overlay" id="detailModal" onclick="closeDetailModal(event)">
+        <div class="detail-modal-box" id="detailModalBox">
+            <button class="detail-modal-close" onclick="closeDetailModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="detail-modal-body" id="detailModalBody"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h2 id="footer-logo-title">คณะกรรมการนักเรียน โรงเรียนมหาวชิราวุธ จังหวัดสงขลา</h2>
+                <p class="address" id="footer-addr">
+                    ชั้น 1 อาคารเฉลิมศึก ยุคล ถนนราชดำเนิน ตำบลบ่อยาง อำเภอเมืองสงขลา จังหวัดสงขลา 90000
+                </p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/scmvsk" target="_blank" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/mvsc.official" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@vajiraview" target="_blank" class="social-icon"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://line.me/R/ti/p/@820ffonz" class="social-icon"><i class="fa-brands fa-line"></i></a>
+                </div>
+            </div>
+            <div>
+                <h3 class="footer-title" id="footer-quick-title">หน่วยงานภายใน</h3>
+                <ul class="footer-links">
+                    <li><a href="http://www.mvsk.ac.th" target="_blank">โรงเรียนมหาวชิราวุธ จังหวัดสงขลา</a></li>
+                    <li><a href="https://www.facebook.com/mvskcamp">Facebook Page ปฐมนิเทศ ม.ว.</a></li>
+                    <li><a href="https://www.facebook.com/guidancemvsk">งานแนะแนว โรงเรียนมหาวชิราวุธ จังหวัดสงขลา</a></li>
+                    <li><a href="https://www.facebook.com/pjr.mvsk">นักศึกษาวิชาทหาร หน่วยปจร. มหาวชิราวุธ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title" id="footer-more-title">หน่วยงานภายนอก</h3>
+                <ul class="footer-links">
+                    <li><a href="https://www.camphub.in.th/">Camp Hub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom" id="footer-credit">
+            &copy; 2026 คณะกรรมการนักเรียน โรงเรียนมหาวชิราวุธ จังหวัดสงขลา All rights reserved.
+        </div>
+    </footer>
+
+    <a href="https://www.facebook.com/messages/t/1525078074423245" target="_blank" class="messenger-floating" title="ติดต่อด่วน">
+        <i class="fa-brands fa-facebook-messenger"></i>
+    </a>
+
+    <script>
+        // --- ส่วนเชื่อมต่อ GOOGLE SHEETS WEB APP URL ---
+        // นำลิงก์ URL ที่ได้จากการ Deploy Apps Script มาวางไว้ในเครื่องหมายอัญประกาศคู่ด้านล่างนี้
+        const GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbypxxI8Riqzno_Yyz3R1Bz_yEFcK7tMECiqfyGZmiQYPPqYmqbJpoii7yH80pi6zvQJ/exec";
+
+        function escapeHTML(str=''){
+            return String(str)
+            .replace(/&/g,'&amp;')
+            .replace(/</g,'&lt;')
+            .replace(/>/g,'&gt;')
+            .replace(/"/g,'&quot;')
+            .replace(/'/g,'&#039;');
+        }
+
+        // Global State
+        let currentLang = localStorage.getItem('lang') || 'TH';
+        let currentPage = 'home';
+        let searchQuery = '';
+        let globalRawData = [];
+        let newsBannerTimer = null;
+
+        // ลิงก์ภาษาคำแปลฟังก์ชันพื้นฐานในส่วนโครงสร้างระบบหลัก
+        const staticLangPack = {
+            TH: {
+                /* Navbar brand */
+                logoTitle: "คณะกรรมการนักเรียน",
+                logoSub:   "โรงเรียนมหาวชิราวุธ จังหวัดสงขลา",
+                /* Top-level menu labels */
+                home:    "หน้าแรก",
+                news:    "ข่าวสาร ",
+                gallery: "ประมวลภาพ",
+                about:   "เกี่ยวกับเรา ",
+                /* Dropdown — ข่าวสาร */
+                newsGeneral:  "ข่าวประชาสัมพันธ์",
+                newsActivity: "ประกาศคณะกรรมการนักเรียน",
+                policy: 'งานนโยบาย',
+                /* Dropdown — กิจกรรมนักเรียน */
+                navActivity:       "กิจกรรมนักเรียน ",
+                activityMakeAwish: "Make A Wish",
+                activityOther:     "อื่นๆ",
+                /* Dropdown — ระบบ */
+                navSystem:        "ระบบ ",
+                systemReport:     "แจ้งอุปกรณ์ชำรุด/เสียหาย",
+                systemElection:   "แจ้งผลการเลือกตั้ง",
+                /* Dropdown — เกี่ยวกับเรา */
+                aboutSymbol:    "สัญลักษณ์",
+                aboutVision:    "วิสัยทัศน์/พันธกิจ/เป้าประสงค์",
+                aboutStructure: "โครงสร้างคณะกรรมการนักเรียน",
+                aboutDirectory: "ทำเนียบคณะกรรมการนักเรียน",
+                /* Search */
+                searchPlh: "ค้นหาภายในเว็บ...",
+                /* Modal popup */
+                modalTag:   "ข่าวสารล่าสุด",
+                modalTitle: "ข่าวสารและประกาศด่วน",
+                modalImgLbl: "กล่องสำหรับใส่รูปภาพข่าวสาร (ไว้ใส่ในภายหลัง)",
+                modalDesc:   "ขอเชิญชวนนักเรียนโรงเรียนมหาวชิราวุธ จังหวัดสงขลา ร่วมติดตามและแสดงความคิดเห็นต่อนโยบายประจำปีการศึกษา เพื่อพัฒนาโรงเรียนของพวกเราไปด้วยกัน",
+                /* Footer */
+                footerTitle: "คณะกรรมการนักเรียน โรงเรียนมหาวชิราวุธ จังหวัดสงขลา",
+                footerAddr:  "ชั้น 1 อาคารเฉลิมศึก ยุคล ถนนราชดำเนิน ตำบลบ่อยาง อำเภอเมืองสงขลา จังหวัดสงขลา 90000",
+                footerQuick: "หน่วยงานภายใน",
+                footerMore:  "หน่วยงานภายนอก",
+                footerCredit: "© 2026 คณะกรรมการนักเรียน โรงเรียนมหาวชิราวุธ จังหวัดสงขลา All rights reserved.",
+                /* readMore inside cards */
+                readMore: "อ่านข้อมูลเพิ่มเติม",
+                /* Empty state */
+                noData: "ไม่พบข้อมูลที่ต้องการในหมวดหมู่นี้",
+            },
+            EN: {
+                logoTitle: "Student Committee",
+                logoSub:   "Mahavajiravudh Songkhla School",
+                home:    "Home",
+                news:    "News ",
+                gallery: "Gallery",
+                about:   "About Us ",
+                newsGeneral:  "Public Relations News",
+                newsActivity: "SC Announcements",
+                policy: 'Policy',
+                navActivity:       "Activities ",
+                activityMakeAwish: "Make A Wish",
+                activityOther:     "Others",
+                navSystem:        "Systems ",
+                systemReport:     "Report Damaged Equipment",
+                systemElection:   "Election Results",
+                aboutSymbol:    "Symbol",
+                aboutVision:    "Vision / Mission / Goals",
+                aboutStructure: "Committee Structure",
+                aboutDirectory: "Committee Directory",
+                searchPlh: "Search site...",
+                modalTag:    "LATEST NEWS",
+                modalTitle:  "News & Urgent Announcements",
+                modalImgLbl: "Image placeholder — to be added later",
+                modalDesc:   "Mahavajiravudh School students are invited to follow and share feedback on this year's policies to develop our school together.",
+                footerTitle: "Student Committee, Mahavajiravudh Songkhla School",
+                footerAddr:  "1st Floor, Chalermsuek Yugala Building, Ratchadamnoen Road, Bo Yang, Mueang Songkhla, Songkhla 90000",
+                footerQuick: "Internal Organizations",
+                footerMore:  "External Organizations",
+                footerCredit: "© 2026 Student Committee Mahavajiravudh Songkhla School All rights reserved.",
+                readMore: "Read more",
+                noData: "No content found in this category",
+            }
+        };
+
+        // --- 1. การเปลี่ยนหน้าเว็บ (Routing) ---
+        let currentTypeFilter = ''; // แยก type filter ออกจาก freetext search
+
+        function navigateToPage(pageName, subFilter = '') {
+            const container = document.getElementById('bento-main-container');
+
+            // ── Page Exit Animation ──
+            container.classList.add('page-exit');
+            if (newsBannerTimer) { clearInterval(newsBannerTimer); newsBannerTimer = null; }
+
+            setTimeout(() => {
+                currentPage = pageName;
+                currentTypeFilter = subFilter;
+                searchQuery = '';
+                document.getElementById('searchInput').value = '';
+
+                // จัดการ Active Navigation Style
+                document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('active'));
+                const activeNavMap = { 'home': 'nav-home', 'Policy': 'nav-policy', 'policy': 'nav-policy', 'Gallery': 'nav-gallery', 'about us': 'nav-about', 'directory': 'nav-about', 'contact': 'nav-contact' };
+                if(activeNavMap[pageName]) document.getElementById(activeNavMap[pageName]).classList.add('active');
+
+                container.classList.remove('page-exit');
+                container.classList.add('page-enter');
+                renderBentoEngine();
+
+                // เลื่อนขึ้นบนสุด
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                setTimeout(() => container.classList.remove('page-enter'), 350);
+            }, 220);
+        }
+
+        // --- 2. ฟังก์ชันแปลขนาดคอลัมน์จาก Sheet เป็น CSS คลาส ---
+        function getSpanClass(sizeStr) {
+            if(!sizeStr) return 'span-1-1';
+            let norm = sizeStr.toString().toLowerCase().trim();
+            if(norm === 'full') return 'span-full';
+            if(norm === '2*2' || norm === '2x2') return 'span-2-2';
+            if(norm === '1*2' || norm === '1x2') return 'span-1-2';
+            if(norm === '2*1' || norm === '2x1') return 'span-2-1';
+            return 'span-1-1';
+        }
+
+        // --- DETAIL MODAL: Open / Close ---
+        function closeDetailModal(e) {
+            if (e && e.target !== document.getElementById('detailModal')) return;
+            document.getElementById('detailModal').classList.remove('open');
+        }
+
+        function openMemberModal(item, lang) {
+            const title   = lang === 'EN' ? (item.titleEn || item.title || item.Title || '') : (item.Title || item.title || '');
+            const subtitle = lang === 'EN' ? (item.subtitleEn || item.subtitle || item.Subtitle || '') : (item.Subtitle || item.subtitle || '');
+            const bio     = lang === 'EN' ? (item.bioEn || item.bioTh || '') : (item.bioTh || '');
+            const imgUrl  = item.IconURL || item.iconUrl || '';
+            const linkUrl = item.LinkURL || item.linkUrl || '';
+            const classroom = item.classroom || '';
+
+            let igLabel = '';
+            if (linkUrl && linkUrl.includes('instagram.com')) {
+                const cleanUrl = linkUrl.replace(/\/$/, '').split('?')[0];
+                const parts = cleanUrl.split('/');
+                igLabel = '@' + (parts[parts.length - 1] || 'instagram');
+            }
+
+            const fallbackImg = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(title.charAt(0) || 'M') + '&background=1e3a8a&color=fff&size=400';
+
+            document.getElementById('detailModalBody').innerHTML = `
+                <div class="dm-left">
+                    <img src="${imgUrl || fallbackImg}" class="dm-big-photo" alt="${title}" onerror="this.src='${fallbackImg}'">
+                </div>
+                <div class="dm-right">
+                    <span class="dm-tag">STUDENT COMMITTEE</span>
+                    <h2 class="dm-name">${title}</h2>
+                    <p class="dm-role">${subtitle}${classroom ? ' · ' + classroom : ''}</p>
+                    <div class="dm-divider"></div>
+                    <p class="dm-bio-title">${lang === 'TH' ? 'บทบาทหน้าที่ / วิสัยทัศน์' : 'Role / Vision'}</p>
+                    <p class="dm-bio-text">${bio || (lang === 'TH' ? 'ยังไม่มีข้อมูลประวัติเพิ่มเติม' : 'No additional profile info yet.')}</p>
+                    ${linkUrl ? `
+                    <a href="${linkUrl}" target="_blank" class="dm-ig-modal-btn">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        ${igLabel || (lang === 'TH' ? 'ติดตาม Instagram' : 'Follow on Instagram')}
+                    </a>` : ''}
+                </div>
+            `;
+            document.getElementById('detailModal').classList.add('open');
+        }
+
+        function openPolicyModal(item, index, lang) {
+            const title    = lang === 'EN' ? (item.titleEn || item.title || item.Title || '') : (item.Title || item.title || '');
+            const subtitle = lang === 'EN' ? (item.subtitleEn || item.subtitle || item.Subtitle || '') : (item.Subtitle || item.subtitle || '');
+            const bio      = lang === 'EN' ? (item.bioEn || item.bioTh || '') : (item.bioTh || '');
+            const category = item.classroom || (lang === 'EN' ? 'General' : 'ทั่วไป');
+            const pct      = isNaN(parseInt(item.LinkURL || item.linkUrl)) ? 0 : parseInt(item.LinkURL || item.linkUrl);
+            const iconUrl  = item.IconURL || item.iconUrl || '';
+            const responsible = item.nickname || item.nicknameEn || '';
+
+            const iconHtml = iconUrl
+                ? `<img src="${iconUrl}" onerror="this.parentElement.innerHTML='<i class=\\'fa-solid fa-star\\'></i>'">`
+                : `<i class="fa-solid fa-star"></i>`;
+
+            document.getElementById('detailModalBody').innerHTML = `
+                <div class="dm-left">
+                    <div class="dm-policy-icon">${iconHtml}</div>
+                </div>
+                <div class="dm-right">
+                    <span class="dm-tag">${lang === 'TH' ? 'ติดตามสถานะนโยบาย' : 'Policy Status'}</span>
+                    <h2 class="dm-name">${title}</h2>
+                    <p class="dm-role">${lang === 'TH' ? 'หมวดหมู่:' : 'Category:'} ${category}</p>
+                    <div class="dm-divider"></div>
+                    <p class="dm-bio-title">${lang === 'TH' ? 'เป้าหมายนโยบาย และ รายละเอียดเชิงลึก' : 'Policy Goal & Details'}</p>
+                    <p class="dm-bio-text">${bio || subtitle || (lang === 'TH' ? 'ยังไม่มีรายละเอียดเพิ่มเติม' : 'No additional details yet.')}</p>
+                    <div class="dm-meta-box">
+                        <div class="dm-meta-row">
+                            <i class="fa-solid fa-chart-bar"></i>
+                            <span><strong>${lang === 'TH' ? 'สถานะการดำเนินงาน :' : 'Progress:'}</strong>&nbsp; ${lang === 'TH' ? 'ดำเนินการไปแล้ว' : 'Completed'} ${pct}%</span>
+                        </div>
+                        ${responsible ? `
+                        <div class="dm-meta-row">
+                            <i class="fa-solid fa-user-tie"></i>
+                            <span><strong>${lang === 'TH' ? 'ผู้รับผิดชอบ :' : 'Responsible:'}</strong>&nbsp; ${responsible}</span>
+                        </div>` : ''}
+                    </div>
+                </div>
+            `;
+            document.getElementById('detailModal').classList.add('open');
+        }
+
+        // Mockup policy data สำหรับกรณีไม่มีข้อมูลจาก Sheets
+        const mockPolicyData = [
+            { Title: 'Make A Wish', Subtitle: 'จัดหาค่ายวิชาการ', bioTh: 'จัดทำค่ายวิชาการเพื่อเสริมความรู้ให้กับนักเรียน', classroom: 'วิชาการ (Academic)', LinkURL: '0', icon: 'fa-note-sticky' },
+            { Title: 'Make A Vide', Subtitle: 'ปรับปรุงภูมิทัศน์โรงเรียนมหาวชิราวุธ', bioTh: 'จัดทำขึ้นเพื่อปรับปรุงทิวทัศน์ของโรงเรียนมหาวชิราวุธให้สบายตามากยิ่งขึ้น', classroom: 'สถานที่ (Place)', LinkURL: '0', icon: 'fa-video' },
+            { Title: 'Make Fun(d)', Subtitle: 'จัดตลาดออนไลน์', bioTh: 'จัดตลาดออนไลน์เพื่อสร้างรายได้และส่งเสริมการเป็นผู้ประกอบการ', classroom: 'พัฒนาผู้เรียน (Develop Student)', LinkURL: '0', icon: 'fa-store' },
+            { Title: 'Mon(th)ly Market', Subtitle: 'จัดตั้งตลาดรายเดือน', bioTh: 'จัดตั้งตลาดรายเดือนเพื่อสร้างพื้นที่ซื้อขายสินค้าภายในโรงเรียน', classroom: 'พัฒนาผู้เรียน (Develop Student)', LinkURL: '0', icon: 'fa-calendar-days' },
+        ];
+
+        // --- 3a. ฟังก์ชันเรนเดอร์หน้า Directory แบบ Premium Member Cards ---
+        function renderDirectoryPage(container, rows, lang) {
+            container.innerHTML = '';
+
+            // Header ส่วนบนของหน้า
+            const headerDiv = document.createElement('div');
+            headerDiv.className = 'dir-section-header';
+            const dirSubtitle = lang === 'TH' ? 'รายชื่อคณะกรรมการนักเรียน โรงเรียนมหาวชิราวุธ จังหวัดสงขลา ประจำปีการศึกษา 2569' : 'Student Committee Members, Mahavajiravudh Songkhla School, Academic Year 2026';
+            headerDiv.innerHTML = `<h2>${lang === 'TH' ? 'ทำเนียบคณะกรรมการนักเรียน' : 'Student Committee Directory'}</h2><p>${dirSubtitle}</p>`;
+            container.appendChild(headerDiv);
+
+            const gridDiv = document.createElement('div');
+            gridDiv.className = 'directory-grid';
+
+            const memberRows = rows.filter(r => (r.Type || '').toString().trim().toLowerCase() === 'member');
+            if (memberRows.length === 0) {
+                gridDiv.innerHTML = `<p style="grid-column:1/-1; text-align:center; color:var(--text-secondary); padding:40px 0;">${lang === 'TH' ? 'ยังไม่มีข้อมูลสมาชิก' : 'No member data available.'}</p>`;
+            } else {
+                memberRows.forEach(item => {
+                    const title = lang === 'EN' ? (item.titleEn || item.title || item.Title || '') : (item.Title || item.title || '');
+                    const subtitle = lang === 'EN' ? (item.subtitleEn || item.subtitle || item.Subtitle || '') : (item.Subtitle || item.subtitle || '');
+                    const nickname = lang === 'EN' ? (item.nicknameEn || item.nickname || '') : (item.nickname || '');
+                    const classroom = item.classroom || '';
+                    const imgUrl = item.IconURL || item.iconUrl || '';
+                    const linkUrl = item.LinkURL || item.linkUrl || '';
+
+                    const isChairman = subtitle.includes('ประธาน') && !subtitle.includes('รอง');
+
+                    let igLabel = '';
+                    if (linkUrl && linkUrl.includes('instagram.com')) {
+                        const cleanUrl = linkUrl.replace(/\/$/, '').split('?')[0];
+                        const parts = cleanUrl.split('/');
+                        igLabel = '@' + (parts[parts.length - 1] || 'instagram');
+                    }
+
+                    const card = document.createElement('div');
+                    card.className = `premium-member-card${isChairman ? ' chairman-card' : ''}`;
+                    card.innerHTML = `
+                        <div class="pm-avatar-wrap">
+                            <img src="${imgUrl || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(title) + '&background=1e3a8a&color=fff&size=200'}" class="pm-avatar" alt="${title}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(title.charAt(0))}&background=1e3a8a&color=fff&size=200'">
+                        </div>
+                        <h3>${title}</h3>
+                        ${nickname ? `<div class="pm-nickname">( ${nickname} )</div>` : '<div class="pm-nickname" style="height:20px;"></div>'}
+                        <div class="pm-tags">
+                            ${subtitle ? `<div class="pm-tag-role">${subtitle}</div>` : ''}
+                            ${classroom ? `<div class="pm-tag-class">${classroom}</div>` : ''}
+                        </div>
+                        ${linkUrl ? `
+                        <a href="${linkUrl}" target="_blank" class="pm-ig-btn" onclick="event.stopPropagation();">
+                            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                            ${igLabel || (lang === 'TH' ? 'ติดตาม Instagram' : 'Follow Instagram')}
+                        </a>` : ''}
+                    `;
+                    card.onclick = () => openMemberModal(item, lang);
+                    gridDiv.appendChild(card);
+                });
+            }
+            container.appendChild(gridDiv);
+        }
+
+        // --- 3b. ฟังก์ชันเรนเดอร์หน้า Policy แบบ Full Card Grid ---
+        function renderPolicyPage(container, rows, lang) {
+            container.innerHTML = '';
+
+            // Section title
+            const headerDiv = document.createElement('div');
+            headerDiv.className = 'dir-section-header';
+            const polSubtitle = lang === 'TH' ? 'ติดตามความคืบหน้าและรายละเอียดนโยบายของคณะกรรมการนักเรียน' : 'Track progress and details of Student Committee policies';
+            headerDiv.innerHTML = `<h2>${lang === 'TH' ? 'นโยบาย ปีการศึกษา 2569' : 'Policies Academic Year 2026'}</h2><p>${polSubtitle}</p>`;
+            container.appendChild(headerDiv);
+
+            const gridDiv = document.createElement('div');
+            gridDiv.className = 'policy-full-grid';
+
+            const policyRows = rows.filter(r => (r.Type || '').toString().trim().toLowerCase() === 'policy');
+
+            if (policyRows.length === 0) {
+                mockPolicyData.forEach((p, i) => {
+                    const num = String(i + 1).padStart(2, '0');
+                    const card = document.createElement('div');
+                    card.className = 'policy-full-card';
+                    const cat = lang === 'TH' ? p.classroom : (p.classroomEn || p.classroom);
+                    card.innerHTML = `
+                        <div class="pf-card-top">
+                            <div class="pf-icon-box"><i class="fa-solid ${p.icon}"></i></div>
+                            <div class="pf-card-num">${num}</div>
+                        </div>
+                        <h3>${p.Title}</h3>
+                        <p>${p.Subtitle}</p>
+                        <div class="pf-tag-pill"><i class="fa-solid fa-lightbulb"></i> ${cat}</div>
+                        <div class="pf-progress-wrap">
+                            <div class="pf-progress-labels">
+                                <span>${lang === 'TH' ? 'ความคืบหน้า' : 'Progress'}</span>
+                                <span>0%</span>
+                            </div>
+                            <div class="pf-progress-bg"><div class="pf-progress-fill" style="width:0%;"></div></div>
+                        </div>
+                    `;
+                    card.onclick = () => openPolicyModal(p, i, lang);
+                    gridDiv.appendChild(card);
+                });
+            } else {
+                policyRows.forEach((row, i) => {
+                    const title = lang === 'EN' ? (row.titleEn || row.Title || '') : (row.Title || '');
+                    const subtitle = lang === 'EN' ? (row.subtitleEn || row.Subtitle || '') : (row.Subtitle || '');
+                    const bio = lang === 'EN' ? (row.bioEn || row.bioTh || '') : (row.bioTh || '');
+                    const category = row.classroom || (lang === 'EN' ? 'General' : 'ทั่วไป');
+                    const pct = isNaN(parseInt(row.LinkURL)) ? 0 : parseInt(row.LinkURL);
+                    const num = String(i + 1).padStart(2, '0');
+                    const iconUrl = row.IconURL || '';
+
+                    const card = document.createElement('div');
+                    card.className = 'policy-full-card';
+                    card.innerHTML = `
+                        <div class="pf-card-top">
+                            <div class="pf-icon-box">
+                                ${iconUrl ? `<img src="${iconUrl}" style="width:26px;height:26px;object-fit:contain;filter:brightness(0) invert(1);">` : '<i class="fa-solid fa-note-sticky"></i>'}
+                            </div>
+                            <div class="pf-card-num">${num}</div>
+                        </div>
+                        <h3>${title}</h3>
+                        <p>${subtitle || bio}</p>
+                        <div class="pf-tag-pill"><i class="fa-solid fa-lightbulb"></i> ${category}</div>
+                        <div class="pf-progress-wrap">
+                            <div class="pf-progress-labels">
+                                <span>${lang === 'TH' ? 'ความคืบหน้า' : 'Progress'}</span>
+                                <span>${pct}%</span>
+                            </div>
+                            <div class="pf-progress-bg"><div class="pf-progress-fill" style="width:${pct}%;"></div></div>
+                        </div>
+                    `;
+                    card.onclick = () => openPolicyModal(row, i, lang);
+                    gridDiv.appendChild(card);
+                });
+            }
+            container.appendChild(gridDiv);
+        }
+
+        // --- 3. แกนหลักการเรนเดอร์เนื้อหาเป็น Bento Box ---
+        function renderBentoEngine() {
+            const container = document.getElementById('bento-main-container');
+            container.innerHTML = '';
+
+            // ── หน้า Directory: ใช้ Premium Member Cards ──
+            if (currentPage === 'directory') {
+                const pageRows = globalRawData.filter(r =>
+                    (r.Page || '').toString().trim().toLowerCase() === 'directory'
+                );
+                renderDirectoryPage(container, pageRows, currentLang);
+                return;
+            }
+
+            // ── หน้า Policy: ใช้ Full Policy Cards Grid ──
+            if (currentPage === 'policy') {
+                const pageRows = globalRawData.filter(r =>
+                    (r.Page || '').toString().trim().toLowerCase() === 'policy'
+                );
+                renderPolicyPage(container, pageRows, currentLang);
+                return;
+            }
+
+            // ฟิลเตอร์คัดกรองแถวข้อมูลจาก Page และคำค้นหา
+            let filteredRows = globalRawData.filter(row => {
+                if ((row.Type || '').toString().trim().toLowerCase() === 'news') return false;
+                let matchPage = row.Page && row.Page.toString().trim().toLowerCase() === currentPage.toLowerCase();
+                
+                // กรองตาม Type (subFilter จากเมนู dropdown)
+                let matchType = true;
+                if(currentTypeFilter) {
+                    let rowType = (row.Type || '').toString().trim().toLowerCase();
+                    matchType = rowType.includes(currentTypeFilter.toLowerCase());
+                }
+
+                // กรองตามคำค้นหาแบบ freetext
+                let matchSearch = true;
+                if(searchQuery) {
+                    let s = searchQuery.toLowerCase();
+                    let tTh = (row.Title || '').toLowerCase();
+                    let tEn = (row.titleEn || '').toLowerCase();
+                    let subTh = (row.Subtitle || '').toLowerCase();
+                    let subEn = (row.subtitleEn || '').toLowerCase();
+                    let type = (row.Type || '').toLowerCase();
+                    matchSearch = tTh.includes(s) || tEn.includes(s) || subTh.includes(s) || subEn.includes(s) || type.includes(s);
+                }
+                return matchPage && matchType && matchSearch;
+            });
+
+            if(filteredRows.length === 0 && currentPage !== 'home') {
+                container.innerHTML = `<div class="loading-container"><p><i class="fa-solid fa-magnifying-glass"></i> ${staticLangPack[currentLang].noData}</p></div>`;
+                return;
+            }
+
+            // ลูปแปลงข้อมูลแถวตารางให้กลายเป็นการ์ด
+            filteredRows.forEach(row => {
+                const card = document.createElement('div');
+                let spanSize = getSpanClass(row.Size);
+                let cardType = row.Type ? row.Type.toString().trim() : 'text-block';
+                card.className = `bento-card ${spanSize} type-${cardType.toLowerCase()}`;
+
+                // ดึงข้อมูลภาษาตามที่เลือก
+                let displayTitle = currentLang === 'TH' ? (row.Title || '') : (row.titleEn || row.Title || '');
+                let displaySubtitle = currentLang === 'TH' ? (row.Subtitle || '') : (row.subtitleEn || row.Subtitle || '');
+                let displayBio = currentLang === 'TH' ? (row.bioTh || '') : (row.bioEn || row.bioTh || '');
+                let displayNickname = currentLang === 'TH' ? (row.nickname || '') : (row.nicknameEn || row.nickname || '');
+
+                // ตกแต่ง Layout การ์ดภายในตามโครงสร้างโมดูล Type ของคอลัมน์ในชีต
+                if (cardType.toLowerCase() === 'section-title') {
+                    card.innerHTML = `
+                        <h2 class="card-title">${displayTitle}</h2>
+                        ${displaySubtitle ? `<p class="card-subtitle">${displaySubtitle}</p>` : ''}
+                    `;
+                } 
+                else if (cardType.toLowerCase() === 'member') {
+                    // โมดูลการ์ดทำเนียบคณะกรรมการ
+                    let imgUrl = row.IconURL || 'https://ui-avatars.com/api/?name=' + encodeURIComponent((row.Title||'M').charAt(0)) + '&background=1e3a8a&color=fff&size=150';
+                    card.innerHTML = `
+                        <div>
+                            <div style="display: flex; gap: 15px; align-items: center; margin-top: 10px;">
+                                <img src="${imgUrl}" class="member-avatar" alt="Avatar">
+                                <div>
+                                    <h3 class="card-title" style="margin:0;">${displayTitle}</h3>
+                                    ${displayNickname ? `<p class="card-subtitle" style="margin:0;">(${displayNickname})</p>` : ''}
+                                </div>
+                            </div>
+                            <div style="margin-top: 12px;">
+                                ${row.classroom ? `<span class="member-meta"><i class="fa-solid fa-graduation-cap"></i> มศ. ${row.classroom}</span>` : ''}
+                                <p class="card-desc">${displayBio}</p>
+                            </div>
+                        </div>
+                    `;
+                } 
+                else if (currentPage === 'Gallery' || cardType.toLowerCase() === 'review') {
+                    // โมดูลดึงรูปภาพแสดงผลใน Gallery บล๊อกสลับหน้ากาก
+                    let imgUrl = row.IconURL;
+                    if(imgUrl) {
+                        card.innerHTML = `
+                            <div style="width:100%; height:130px; background: url('${imgUrl}') center/cover no-repeat; border-radius:10px; margin: 8px 0;"></div>
+                            <h3 class="card-title" style="font-size:15px;">${displayTitle}</h3>
+                            <p class="card-desc" style="font-size:12px;">${displaySubtitle}</p>
+                        `;
+                    } else {
+                        card.innerHTML = `
+                            <h3 class="card-title">${displayTitle}</h3>
+                            <div class="photo-placeholder"><i class="fa-regular fa-image" style="font-size:20px;"></i><span style="font-size:11px;">ไม่มีรูปภาพแนบ</span></div>
+                        `;
+                    }
+                }
+                else {
+                    // โมดูลรูปแบบมาตรฐาน (Hero, Service, Policy, Text-Block)
+                    const isHero = cardType.toLowerCase() === 'hero' || cardType.toLowerCase() === 'hero-banner';
+                    const heroBgUrl = isHero ? (row.IconURL || '') : '';
+                    if (isHero && heroBgUrl) card.classList.add('has-bg-img');
+
+                    const innerContent = `
+                        <h3 class="card-title">${displayTitle}</h3>
+                        ${displaySubtitle ? `<p class="card-subtitle">${displaySubtitle}</p>` : ''}
+                        ${displayBio ? `<p class="card-desc">${displayBio}</p>` : ''}
+                    `;
+
+                    if (isHero && heroBgUrl) {
+                        card.innerHTML = `
+                            <img src="${heroBgUrl}" class="hero-bg-img" alt="${displayTitle}" onerror="this.style.display='none'; this.nextElementSibling.style.display='none'; this.closest('.bento-card').classList.remove('has-bg-img'); this.closest('.bento-card').style.background='linear-gradient(135deg,var(--primary) 0%,var(--accent) 100%)';">
+                            <div class="hero-overlay"></div>
+                            <div class="hero-content">
+                                ${innerContent}
+                                ${row.LinkURL ? `<a href="${row.LinkURL}" target="_blank" class="card-link-btn">${staticLangPack[currentLang].readMore} <i class="fa-solid fa-arrow-up-right-from-square"></i></a>` : ''}
+                            </div>
+                        `;
+                    } else {
+                        card.innerHTML = `
+                            <div class="hero-content">
+                                ${innerContent}
+                                ${row.LinkURL && !(cardType.toLowerCase() === 'hero' || cardType.toLowerCase() === 'hero-banner') ? `<a href="${row.LinkURL}" target="_blank" class="card-link-btn">${staticLangPack[currentLang].readMore} <i class="fa-solid fa-arrow-up-right-from-square"></i></a>` : ''}
+                            </div>
+                        `;
+                    }
+                }
+
+                container.appendChild(card);
+            });
+
+            // ── แสดง News Banner + สไลด์สมาชิกและสไลด์นโยบายเฉพาะหน้าแรก ──
+            if (currentPage === 'home') {
+                renderNewsBanner(container, currentLang);
+                renderHomeMarquee();
+            }
+        }
+
+        // ── สร้าง News Banner Slider บนสุดของหน้าแรก ──
+
+        function renderNewsBanner(container, lang) {
+            // ดึงข้อมูล Type = "news" จาก Page = "home"
+            const newsRows = globalRawData.filter(r =>
+                (r.Page || '').toString().trim().toLowerCase() === 'home' &&
+                (r.Type || '').toString().trim().toLowerCase() === 'news'
+            );
+
+            const section = document.createElement('div');
+            section.className = 'news-banner-section';
+            section.id = 'news-banner-section';
+
+            if (newsRows.length === 0) {
+                // Placeholder เมื่อยังไม่มีข่าว
+                section.innerHTML = `
+                    <div class="news-banner-placeholder">
+                        <i class="fa-regular fa-newspaper"></i>
+                        <p>${lang === 'TH' ? 'ยังไม่มีข่าวประชาสัมพันธ์ — เพิ่มแถว Type: news ใน Google Sheets' : 'No news yet — add rows with Type: news in Google Sheets'}</p>
+                    </div>`;
+                container.insertBefore(section, container.firstChild);
+                return;
+            }
+
+            const total = newsRows.length;
+            let current = 0;
+
+            const slides = newsRows.map((row, i) => {
+                const title = lang === 'EN' ? (row.titleEn || row.Title || '') : (row.Title || '');
+                const sub   = lang === 'EN' ? (row.subtitleEn || row.Subtitle || '') : (row.Subtitle || '');
+                const img   = row.IconURL || '';
+                const link  = row.LinkURL || '';
+                return `
+                    <div class="news-slide" data-link="${link}" data-idx="${i}">
+                        ${img
+                            ? `<img src="${img}" alt="${title}" loading="${i === 0 ? 'eager' : 'lazy'}">`
+                            : `<div style="width:100%;height:100%;background:linear-gradient(135deg,var(--primary),var(--accent));"></div>`
+                        }
+                        <div class="news-slide-overlay"></div>
+                        <div class="news-slide-content">
+                            <span class="news-slide-tag">${lang === 'TH' ? 'ข่าวประชาสัมพันธ์' : 'News'}</span>
+                            <div class="news-slide-title">${title}</div>
+                            ${sub ? `<div class="news-slide-sub">${sub}</div>` : ''}
+                        </div>
+                    </div>`;
+            }).join('');
+
+            const dots = newsRows.map((_, i) =>
+                `<div class="news-dot${i === 0 ? ' active' : ''}" data-dot="${i}"></div>`
+            ).join('');
+
+            section.innerHTML = `
+                <div class="news-slides-track" id="newsSlidesTrack">${slides}</div>
+                ${total > 1 ? `
+                <button class="news-banner-arrow prev" id="newsBannerPrev"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="news-banner-arrow next" id="newsBannerNext"><i class="fa-solid fa-chevron-right"></i></button>
+                <div class="news-banner-dots" id="newsBannerDots">${dots}</div>` : ''}
+            `;
+
+            container.insertBefore(section, container.firstChild);
+
+            // ── Control Logic ──
+            const track = section.querySelector('#newsSlidesTrack');
+            const dotsEl = section.querySelectorAll('.news-dot');
+
+            function goTo(idx) {
+                current = (idx + total) % total;
+                track.style.transform = `translateX(-${current * 100}%)`;
+                dotsEl.forEach((d, i) => d.classList.toggle('active', i === current));
+            }
+
+            // คลิกสไลด์ → เปิดลิงก์ (ถ้ามี)
+            section.querySelectorAll('.news-slide').forEach(slide => {
+                slide.addEventListener('click', () => {
+                    const link = slide.dataset.link;
+                    if (link) window.open(link, '_blank');
+                });
+            });
+
+            if (total > 1) {
+                section.querySelector('#newsBannerPrev').addEventListener('click', () => goTo(current - 1));
+                section.querySelector('#newsBannerNext').addEventListener('click', () => goTo(current + 1));
+                dotsEl.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.dot)));
+
+                // Auto-play
+                if (newsBannerTimer) clearInterval(newsBannerTimer);
+                newsBannerTimer = setInterval(() => goTo(current + 1), 5000);
+
+                // Pause on hover
+                section.addEventListener('mouseenter', () => clearInterval(newsBannerTimer));
+                section.addEventListener('mouseleave', () => {
+                    newsBannerTimer = setInterval(() => goTo(current + 1), 5000);
+                });
+            }
+        }
+
+        // ── สร้างสไลด์แนะนำตัวสมาชิก + สไลด์นโยบายบนหน้าแรก ──
+        function renderHomeMarquee() {
+            const container = document.getElementById('bento-main-container');
+            const lang = currentLang;
+
+            const memberPhotos = [
+                "Photo 1.jpg",
+                "Photo 2.jpg",
+                "Photo 3.jpg",
+                "Photo 4.jpg",
+                "Photo 5.jpg",
+                "Photo 6.jpg",
+                "Photo 7.jpg",
+                "Photo 8.jpg",
+                "Photo 9.jpg",
+                "Photo 10.jpg",
+                "Photo 11.jpg",
+                "Photo 12.jpg",
+                "Photo 13.jpg",
+                "Photo 14.jpg",
+                "Photo 18.jpg",
+                "Photo 19.jpg",
+                "Photo 20.jpg",
+                "Photo 21.jpg",
+                "Photo 22.jpg",
+                "Photo 23.jpg",
+                "Photo 24.jpg",
+                "Photo 25.jpg",
+                "Photo 26.jpg",
+                "Photo 27.jpg",
+                "Photo 28.jpg",
+                "Photo 29.jpg",
+            ];
+
+            // ── ส่วนที่ 1: สไลด์สมาชิก ──
+            const memberSection = document.createElement('div');
+            memberSection.className = 'home-marquee-section';
+
+            const memberPhotoImgs = memberPhotos.map(src =>
+                `<img src="${src}" class="marquee-photo" onclick="navigateToPage('directory')" alt="สมาชิก">`
+            ).join('');
+
+            memberSection.innerHTML = `
+                <div class="party-header">
+                    <div class="party-title-main">
+                        <i class="fa-solid fa-users"></i>
+                        ${lang === 'EN' ? 'SC Members' : 'สมาชิกคณะกรรมการนักเรียน'}
+                    </div>
+                    <div class="party-title-sub">${lang === 'EN' ? '— All Members —' : '— ปีการศึกษา 2569 —'}</div>
+                </div>
+                <div class="marquee-wrapper">
+                    <div class="marquee-track">
+                        ${memberPhotoImgs}
+                        ${memberPhotoImgs}
+                    </div>
+                </div>
+                <div class="home-section-view-all">
+                    <button class="btn-members" onclick="navigateToPage('directory')">
+                        ${lang === 'EN' ? 'View all 29 members' : 'ดูสมาชิกทั้งหมด 29 คน'}
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            `;
+            container.appendChild(memberSection);
+
+            // ── ส่วนที่ 2: สไลด์นโยบาย ──
+            const policyRows = globalRawData.filter(r =>
+                (r.Type || '').toString().trim().toLowerCase() === 'policy'
+            );
+
+            const policySection = document.createElement('div');
+            policySection.className = 'home-marquee-section';
+            policySection.style.marginTop = '40px';
+
+            let policyCardsHtml = '';
+            if (policyRows.length > 0) {
+                policyRows.forEach((row, i) => {
+                    const title = lang === 'EN' ? (row.titleEn || row.Title || '') : (row.Title || '');
+                    const subtitle = lang === 'EN' ? (row.subtitleEn || row.Subtitle || '') : (row.Subtitle || '');
+                    const category = row.classroom || (lang === 'EN' ? 'General' : 'ทั่วไป');
+                    const pct = isNaN(parseInt(row.LinkURL)) ? 0 : parseInt(row.LinkURL);
+                    const num = String(i + 1).padStart(2, '0');
+                    policyCardsHtml += `
+                        <div class="policy-slide-card" onclick="navigateToPage('policy')">
+                            <div>
+                                <div class="policy-card-header">
+                                    <div class="policy-icon-circle">
+                                        ${row.IconURL ? `<img src="${row.IconURL}" style="width:22px;height:22px;object-fit:contain;filter:brightness(0) invert(1);">` : '<i class="fa-solid fa-note-sticky"></i>'}
+                                    </div>
+                                    <div class="policy-card-num">${num}</div>
+                                </div>
+                                <h3>${title}</h3>
+                                <p>${subtitle}</p>
+                                <div class="policy-category-tag">
+                                    <i class="fa-solid fa-lightbulb"></i> ${category}
+                                </div>
+                            </div>
+                            <div class="policy-progress-bar-wrap">
+                                <div class="policy-progress-labels">
+                                    <span>${lang === 'EN' ? 'Progress' : 'ความคืบหน้า'}</span>
+                                    <span>${pct}%</span>
+                                </div>
+                                <div class="policy-progress-bg">
+                                    <div class="policy-progress-fill" style="width:${pct}%;"></div>
+                                </div>
+                            </div>
+                        </div>`;
+                });
+            } else {
+                // Mockup กรณีไม่มีข้อมูลนโยบายใน Sheets
+                const mockPolicies = [
+                    { num: '01', icon: 'fa-broom', title: lang === 'EN' ? 'Clean Restrooms' : 'ห้องน้ำสะอาด', sub: lang === 'EN' ? 'Upgrade school restrooms to better standards' : 'ปรับปรุงห้องน้ำให้สะอาดมีมาตรฐาน', cat: lang === 'EN' ? 'Facilities' : 'สิ่งอำนวยความสะดวก', pct: 40 },
+                    { num: '02', icon: 'fa-wifi', title: lang === 'EN' ? 'WiFi Coverage' : 'WiFi ทั่วถึง', sub: lang === 'EN' ? 'Expand WiFi access to all buildings' : 'เพิ่มจุด WiFi ในทุกอาคาร', cat: lang === 'EN' ? 'Technology' : 'เทคโนโลยี', pct: 20 },
+                    { num: '03', icon: 'fa-utensils', title: lang === 'EN' ? 'Better Canteen' : 'โรงอาหารคุณภาพ', sub: lang === 'EN' ? 'Improve lunch food quality for students' : 'ยกระดับคุณภาพอาหารกลางวัน', cat: lang === 'EN' ? 'Food & Health' : 'อาหาร & สุขภาพ', pct: 60 },
+                    { num: '04', icon: 'fa-tv', title: lang === 'EN' ? 'Vajiraview' : 'Vajiraview', sub: lang === 'EN' ? 'Create a platform for students to express themselves' : 'สร้างสีสันและพื้นที่แสดงออก', cat: lang === 'EN' ? 'Activities' : 'นันทนาการ', pct: 20 },
+                ];
+                mockPolicies.forEach(p => {
+                    policyCardsHtml += `
+                        <div class="policy-slide-card" onclick="navigateToPage('policy')">
+                            <div>
+                                <div class="policy-card-header">
+                                    <div class="policy-icon-circle"><i class="fa-solid ${p.icon}"></i></div>
+                                    <div class="policy-card-num">${p.num}</div>
+                                </div>
+                                <h3>${p.title}</h3>
+                                <p>${p.sub}</p>
+                                <div class="policy-category-tag"><i class="fa-solid fa-lightbulb"></i> ${p.cat}</div>
+                            </div>
+                            <div class="policy-progress-bar-wrap">
+                                <div class="policy-progress-labels">
+                                    <span>${lang === 'EN' ? 'Progress' : 'ความคืบหน้า'}</span>
+                                    <span>${p.pct}%</span>
+                                </div>
+                                <div class="policy-progress-bg">
+                                    <div class="policy-progress-fill" style="width:${p.pct}%;"></div>
+                                </div>
+                            </div>
+                        </div>`;
+                });
+            }
+
+            policySection.innerHTML = `
+                <div class="party-header">
+                    <div class="party-title-main">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        ${lang === 'EN' ? 'Our Policies' : 'นโยบายขับเคลื่อนโรงเรียน'}
+                    </div>
+                    <div class="party-title-sub">${lang === 'EN' ? '— Highlight Policies —' : '— นโยบายที่กำลังดำเนินงาน —'}</div>
+                </div>
+                <div class="marquee-wrapper">
+                    <div class="marquee-track" style="animation-duration:45s;">
+                        ${policyCardsHtml}
+                        ${policyCardsHtml}
+                    </div>
+                </div>
+                <div class="home-section-view-all">
+                    <button class="btn-policy" onclick="navigateToPage('policy')">
+                        ${lang === 'EN' ? 'View all policies' : 'ดูนโยบายทั้งหมด'}
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            `;
+            container.appendChild(policySection);
+        }
+
+        // --- 4. การจัดการภาษา (Localization) ---
+        document.getElementById('langToggleBtn').addEventListener('click', function() {
+            currentLang = currentLang === 'TH' ? 'EN' : 'TH'; localStorage.setItem('lang',currentLang);
+            this.textContent = currentLang === 'TH' ? 'EN' : 'TH';
+            applyStaticLanguage();
+            renderBentoEngine();
+        });
+
+        function applyStaticLanguage() {
+            const pack = staticLangPack[currentLang];
+            const set = (id, val) => { const el = document.getElementById(id); if(el && val !== undefined) el.textContent = val; };
+            const setHTML = (id, val) => { const el = document.getElementById(id); if(el && val !== undefined) el.innerHTML = val; };
+
+            /* Brand */
+            set('txt-logo-title', pack.logoTitle);
+            set('txt-logo-sub',   pack.logoSub);
+
+            /* Top-level nav */
+            const chevron = ' <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i>';
+            const navHome = document.getElementById('nav-home');
+            if(navHome) navHome.childNodes[0].textContent = pack.home;
+            setHTML('nav-news',     pack.news    + chevron);
+            set('nav-gallery', pack.gallery);
+            setHTML('nav-about',    pack.about   + chevron);
+            setHTML('nav-activity', pack.navActivity  + chevron);
+            setHTML('nav-system',   pack.navSystem    + chevron);
+
+            /* Dropdown items */
+            set('nav-news-general',       pack.newsGeneral);
+            set('nav-news-activity',      pack.newsActivity);
+            set('nav-policy',             pack.policy);
+            set('nav-activity-makewish',  pack.activityMakeAwish);
+            set('nav-activity-other',     pack.activityOther);
+            set('nav-system-report',      pack.systemReport);
+            set('nav-system-election',    pack.systemElection);
+            set('nav-about-symbol',       pack.aboutSymbol);
+            set('nav-about-vision',       pack.aboutVision);
+            set('nav-about-structure',    pack.aboutStructure);
+            set('nav-about-directory',    pack.aboutDirectory);
+
+            /* Search */
+            const si = document.getElementById('searchInput'); if(si) si.placeholder = pack.searchPlh;
+
+            /* Modal */
+            set('modal-tag',     pack.modalTag);
+            set('modal-title',   pack.modalTitle);
+            set('modal-img-lbl', pack.modalImgLbl);
+            set('modal-desc',    pack.modalDesc);
+
+            /* Footer */
+            set('footer-logo-title',  pack.footerTitle);
+            set('footer-addr',        pack.footerAddr);
+            set('footer-quick-title', pack.footerQuick);
+            set('footer-more-title',  pack.footerMore);
+            set('footer-credit',      pack.footerCredit);
+
+            /* Re-render cards so card text (readMore / noData) updates */
+            // (renderBentoEngine() is called by the toggle handler right after)
+        }
+
+        // --- 5. การสลับธีม (Dark / Light Mode) ---
+        const savedTheme = localStorage.getItem('theme');
+        if(savedTheme==='dark'){
+            document.documentElement.setAttribute('data-theme','dark');
+        }
+        document.getElementById('themeToggleBtn').addEventListener('click', function() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            if(isDark) {
+                document.documentElement.removeAttribute('data-theme');
+                this.innerHTML = '<i class="fa-solid fa-moon"></i>'; localStorage.setItem('theme','light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                this.innerHTML = '<i class="fa-solid fa-sun"></i>'; localStorage.setItem('theme','dark');
+            }
+        });
+
+        // --- 6. แถบค้นหาขยายอัตโนมัติ + Global Search ---
+        const searchContainer = document.getElementById('searchContainer');
+        const searchBtn = document.getElementById('searchBtn');
+        const searchInput = document.getElementById('searchInput');
+        const searchResultsDropdown = document.getElementById('searchResultsDropdown');
+        const searchResultsList = document.getElementById('searchResultsList');
+        const searchResultsHeader = document.getElementById('searchResultsHeader');
+
+        // ไอคอนตาม Type
+        const typeIconMap = {
+            'hero': 'fa-house', 'hero-banner': 'fa-house',
+            'stat': 'fa-chart-bar', 'service': 'fa-concierge-bell',
+            'policy': 'fa-clipboard-list', 'member': 'fa-user-tie',
+            'review': 'fa-images', 'gallery': 'fa-images',
+            'section-title': 'fa-heading', 'news': 'fa-newspaper',
+            'text-block': 'fa-file-lines', 'contact': 'fa-address-card',
+        };
+
+        // ชื่อหน้าสวยงาม
+        const pageLabelMap = {
+            'home': 'หน้าแรก', 'policy': 'นโยบาย', 'gallery': 'ประมวลภาพ',
+            'about us': 'เกี่ยวกับ', 'directory': 'ทำเนียบ', 'contact': 'ติดต่อ',
+            'news': 'ข่าวสาร',
+        };
+
+        function highlightText(text, query) {
+            if (!query || !text) return escapeHTML(text || '');
+            const escaped = escapeHTML(text);
+            const re = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')', 'gi');
+            return escaped.replace(re, '<mark>$1</mark>');
+        }
+
+        function renderSearchResults(query) {
+            if (!query || query.length < 1) {
+                searchResultsDropdown.classList.remove('show');
+                return;
+            }
+            if (!globalRawData || globalRawData.length === 0) {
+                searchResultsDropdown.classList.remove('show');
+                return;
+            }
+
+            const q = query.toLowerCase();
+            const results = globalRawData.filter(row => {
+                const type = (row.Type || '').toLowerCase();
+                if (type === 'section-title') return false; // ข้ามหัวข้อส่วน
+                const tTh  = (row.Title    || '').toLowerCase();
+                const tEn  = (row.titleEn  || '').toLowerCase();
+                const sTh  = (row.Subtitle || '').toLowerCase();
+                const sEn  = (row.subtitleEn || '').toLowerCase();
+                const bio  = (row.bioTh    || '').toLowerCase();
+                return tTh.includes(q) || tEn.includes(q) || sTh.includes(q) || sEn.includes(q) || bio.includes(q);
+            }).slice(0, 12); // จำกัด 12 ผลลัพธ์
+
+            const langIsEn = currentLang === 'EN';
+            const countLabel = langIsEn
+                ? `Results for "${query}" (${results.length})`
+                : `ผลการค้นหา "${query}" (${results.length} รายการ)`;
+            searchResultsHeader.textContent = countLabel;
+
+            if (results.length === 0) {
+                searchResultsList.innerHTML = `
+                    <div class="search-results-empty">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        ${langIsEn ? 'No results found' : 'ไม่พบข้อมูลที่ต้องการ'}
+                    </div>`;
+            } else {
+                searchResultsList.innerHTML = results.map(row => {
+                    const type    = (row.Type || 'text-block').toLowerCase();
+                    const icon    = typeIconMap[type] || 'fa-file-lines';
+                    const title   = langIsEn ? (row.titleEn || row.Title || '') : (row.Title || '');
+                    const sub     = langIsEn ? (row.subtitleEn || row.Subtitle || '') : (row.Subtitle || '');
+                    const page    = (row.Page || '').toString().trim().toLowerCase();
+                    const pageLabel = pageLabelMap[page] || page;
+                    return `
+                        <div class="search-result-item" data-page="${escapeHTML(row.Page || '')}" onclick="handleSearchResultClick(this)">
+                            <div class="search-result-icon"><i class="fa-solid ${icon}"></i></div>
+                            <div class="search-result-text">
+                                <div class="search-result-title">${highlightText(title, query)}</div>
+                                ${sub ? `<div class="search-result-sub">${escapeHTML(sub)}</div>` : ''}
+                            </div>
+                            <span class="search-result-page-badge">${escapeHTML(pageLabel)}</span>
+                        </div>`;
+                }).join('');
+            }
+
+            searchResultsDropdown.classList.add('show');
+        }
+
+        function handleSearchResultClick(el) {
+            const page = el.getAttribute('data-page') || 'home';
+            closeSearchDropdown();
+            navigateToPage(page.trim().toLowerCase() === 'policy' ? 'policy' : page.trim());
+        }
+
+        function closeSearchDropdown() {
+            searchResultsDropdown.classList.remove('show');
+            searchInput.value = '';
+            searchQuery = '';
+            searchContainer.classList.remove('active');
+        }
+
+        searchBtn.addEventListener('click', function(e) {
+            if (!searchContainer.classList.contains('active')) {
+                searchContainer.classList.add('active');
+                searchInput.focus();
+                e.stopPropagation();
+            } else {
+                const val = searchInput.value.trim();
+                if (val !== '') {
+                    renderSearchResults(val);
+                } else {
+                    closeSearchDropdown();
+                }
+            }
+        });
+
+        searchInput.addEventListener('input', function() {
+            const val = this.value.trim();
+            searchQuery = val;
+            currentTypeFilter = '';
+            if (val.length >= 1) {
+                renderSearchResults(val);
+            } else {
+                searchResultsDropdown.classList.remove('show');
+                renderBentoEngine(); // reset หน้าปัจจุบันเมื่อล้างคำค้นหา
+            }
+        });
+
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') { closeSearchDropdown(); }
+            if (e.key === 'Enter') {
+                const val = this.value.trim();
+                if (val) renderSearchResults(val);
+            }
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!searchContainer.contains(e.target)) {
+                if (searchInput.value.trim() === '') {
+                    searchContainer.classList.remove('active');
+                }
+                searchResultsDropdown.classList.remove('show');
+            }
+        });
+
+        // (เริ่ม modal หลังโหลดข้อมูลเสร็จในฟังก์ชัน loadGoogleSheetsData)
+        document.getElementById('closeModalBtn').addEventListener('click', () => {
+            document.getElementById('newsModal').classList.remove('active');
+        });
+
+        // ปิด detail modal ด้วยปุ่ม ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.getElementById('detailModal').classList.remove('open');
+                document.getElementById('newsModal').classList.remove('active');
+                if (typeof closeSearchDropdown === 'function') closeSearchDropdown();
+            }
+        });
+        // ปิด modal เมื่อคลิกพื้นหลัง (overlay)
+        document.getElementById('newsModal').addEventListener('click', function(e) {
+            if(e.target === this) this.classList.remove('active');
+        });
+
+        // --- 8. ดึงข้อมูลชีตแบบสดและปลอดภัย (API Fetching) ---
+        async function loadGoogleSheetsData() {
+            if (GOOGLE_SHEET_WEBAPP_URL.includes("YOUR_DEPLOYED_SCRIPT_ID")) {
+                // Fallback ตัวอย่างจำลองกรณีที่ลิ้งค์สคริปต์ยังไม่ได้เปลี่ยนแอดเดรส
+                console.log("ใช้งานข้อมูลจำลองชั่วคราวกรุณาใส่ลิงก์ Apps Script");
+                globalRawData = [
+                    { Page: "home", Size: "2*2", Type: "hero", Title: "ยินดีต้อนรับสู่สภานักเรียน", titleEn: "Welcome to Student Committee", Subtitle: "โรงเรียนมหาวชิราวุธ จังหวัดสงขลา", subtitleEn: "Mahavajiravudh Songkhla School", bioTh: "เว็ปไซต์ Bento Box ข้อมูลอัปเดตตรงจาก Google Sheets โดยตรงประจำปีการศึกษา 2569" },
+                    { Page: "home", Size: "1*1", Type: "stat", Title: "วิสัยทัศน์", titleEn: "Vision", Subtitle: "มุ่งมั่น สามัคคี พัฒนาเพื่อชาวมหาฯ" },
+                    { Page: "home", Size: "1*1", Type: "service", Title: "นโยบายเร่งด่วน", titleEn: "Quick Policy", Subtitle: "รับฟังทุกเสียงนักเรียนผ่านระบบดิจิทัล" },
+                    { Page: "Policy", Size: "full", Type: "section-title", Title: "นโยบายขับเคลื่อนโรงเรียน", titleEn: "School Policies" },
+                    { Page: "Policy", Size: "2*2", Type: "policy", Title: "ห้องน้ำสะอาด", titleEn: "Clean Restrooms", Subtitle: "ปรับปรุงห้องน้ำให้สะอาดมีมาตรฐาน", subtitleEn: "Upgrade school restrooms to better standards", bioTh: "ดำเนินการปรับปรุงห้องน้ำทุกอาคาร" },
+                    { Page: "Policy", Size: "1*1", Type: "policy", Title: "WiFi ทั่วถึง", titleEn: "WiFi Coverage", Subtitle: "เพิ่มจุด WiFi ในทุกอาคาร", subtitleEn: "Expand WiFi to all buildings" },
+                    { Page: "Policy", Size: "1*1", Type: "policy", Title: "โรงอาหารคุณภาพ", titleEn: "Better Canteen", Subtitle: "ยกระดับคุณภาพอาหารกลางวัน", subtitleEn: "Improve lunch food quality" },
+                    { Page: "Gallery", Size: "full", Type: "section-title", Title: "ประมวลภาพกิจกรรม", titleEn: "Activity Gallery" },
+                    { Page: "Gallery", Size: "1*1", Type: "review", Title: "กิจกรรมวันเปิดเทอม", titleEn: "School Opening Day", Subtitle: "2567", subtitleEn: "2024" },
+                    { Page: "Gallery", Size: "1*1", Type: "review", Title: "กีฬาสี", titleEn: "Sports Day", Subtitle: "2567", subtitleEn: "2024" },
+                    { Page: "about us", Size: "full", Type: "section-title", Title: "ทำเนียบคณะกรรมการ", titleEn: "Committee Members" },
+                    { Page: "about us", Size: "1*2", Type: "member", Title: "นาย ตัวอย่าง ทดสอบ", titleEn: "Mr. Example Test", nickname: "ตัว", nicknameEn: "Tua", classroom: "6/1", bioTh: "ประธานคณะกรรมการนักเรียน", bioEn: "Student Council President" },
+                    { Page: "directory", Size: "full", Type: "section-title", Title: "ทำเนียบสายงาน", titleEn: "Organizational Directory" },
+                    { Page: "contact", Size: "full", Type: "section-title", Title: "ติดต่อเรา", titleEn: "Contact Us" },
+                    { Page: "contact", Size: "2*1", Type: "service", Title: "Facebook Page", titleEn: "Facebook Page", Subtitle: "ติดตามข่าวสารผ่าน Facebook", subtitleEn: "Follow news on Facebook", LinkURL: "https://facebook.com" },
+                    { Page: "contact", Size: "2*1", Type: "service", Title: "อีเมลติดต่อ", titleEn: "Email Contact", Subtitle: "studentcommittee@mv.ac.th", subtitleEn: "studentcommittee@mv.ac.th", LinkURL: "mailto:studentcommittee@mv.ac.th" }
+                ];
+                renderBentoEngine();
+                setTimeout(() => document.getElementById('newsModal').classList.add('active'), 800);
+                return;
+            }
+
+            // ── ใช้ JSONP เนื่องจาก Google Apps Script ไม่ส่ง CORS header
+            // ต้องอัปเดต Code.gs ให้รองรับ ?callback= ด้วย
+            try {
+                const rawJson = await new Promise((resolve, reject) => {
+                    const callbackName = '__gsCallback_' + Date.now();
+                    const script = document.createElement('script');
+
+                    const timeout = setTimeout(() => {
+                        cleanup();
+                        reject(new Error('JSONP timeout: Apps Script ไม่ตอบกลับใน 12 วินาที'));
+                    }, 12000);
+
+                    function cleanup() {
+                        clearTimeout(timeout);
+                        delete window[callbackName];
+                        if (script.parentNode) script.parentNode.removeChild(script);
+                    }
+
+                    window[callbackName] = (data) => {
+                        cleanup();
+                        resolve(data);
+                    };
+
+                    script.src = `${GOOGLE_SHEET_WEBAPP_URL}?callback=${callbackName}`;
+                    script.onerror = () => {
+                        cleanup();
+                        reject(new Error('ไม่สามารถโหลด Apps Script URL ได้ — ตรวจสอบ URL และการ Deploy'));
+                    };
+
+                    document.body.appendChild(script);
+                });
+
+                globalRawData = rawJson;
+                renderBentoEngine();
+                setTimeout(() => document.getElementById('newsModal').classList.add('active'), 800);
+
+            } catch(err) {
+                console.error("การโหลดข้อมูลจากคอลัมน์ชีตล้มเหลว:", err);
+                document.getElementById('bento-main-container').innerHTML = `
+                    <div class="loading-container">
+                        <p style="color:#ef4444;">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            ไม่สามารถดึงข้อมูลได้: ${err.message}
+                        </p>
+                        <p style="font-size:13px; margin-top:12px; color:var(--text-secondary);">
+                            💡 <strong>วิธีแก้:</strong> ตรวจสอบว่า Code.gs รองรับ <code>?callback=</code> (JSONP mode)
+                            และ Deploy ด้วยสิทธิ์ "Anyone"
+                        </p>
+                    </div>`;
+            }
+        }
+
+        // ── LOADER DISMISS ──
+        function dismissLoader() {
+            const loader = document.getElementById('page-loader');
+            if(loader) {
+                setTimeout(() => loader.classList.add('hide'), 200);
+            }
+        }
+
+        // เริ่มสตาร์ทระบบเว็บแอปพลิเคชัน
+        loadGoogleSheetsData().finally(dismissLoader);
+    </script>
+</body>
+</html>
