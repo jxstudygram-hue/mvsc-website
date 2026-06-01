@@ -540,7 +540,7 @@
         .type-hero.span-2-2, .type-hero-banner.span-2-2 {
             grid-column: 1 / -1;
             grid-row: span 1;
-            min-height: calc(500px);
+            min-height: 500px;
             border-radius: 20px;
             padding: 0;
             justify-content: flex-end;
@@ -1412,8 +1412,6 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            border-left: none;
-            padding-left: 0;
             margin-bottom: 8px;
         }
         .party-title-main i {
@@ -1423,7 +1421,6 @@
         .party-title-sub {
             font-size: 15px;
             color: var(--text-secondary);
-            padding-left: 0;
         }
         .marquee-wrapper {
             overflow: hidden;
@@ -1724,7 +1721,35 @@
         }
         .news-banner-placeholder i { font-size: 36px; color: var(--accent); opacity: 0.4; }
         .news-banner-placeholder p { font-size: 14px; }
-    </style>
+    
+/* MOBILE IMPROVEMENTS */
+.mobile-menu-toggle{display:none}
+@media (max-width:768px){
+    .nav-container{padding:10px 14px;flex-wrap:wrap}
+    .brand-text h1{font-size:13px}
+    .brand-text p{font-size:10px}
+    nav{width:auto}
+    .nav-actions{gap:6px;margin-left:6px}
+    .search-container.active .search-input{width:140px}
+    main{padding:0 12px;margin-top:80px}
+    .bento-card{padding:16px}
+    .card-title{font-size:16px}
+    .type-section-title .card-title,.dir-section-header h2{font-size:28px}
+    .news-slide-content{padding:16px}
+    .footer-container{gap:24px}
+    .detail-modal-box{max-width:95vw}
+    .search-results-dropdown{width:92vw;right:-10px}
+}
+@media (max-width:480px){
+    .brand img{width:38px;height:38px}
+    .brand-text h1{font-size:12px}
+    .brand-text p{display:none}
+    .action-icon-btn,.search-btn{width:34px;height:34px}
+    .type-hero .card-title,.type-hero-banner .card-title{font-size:32px!important}
+    .type-hero .hero-content,.type-hero-banner .hero-content{padding:20px}
+}
+
+</style>
 </head>
 <body>
 
@@ -1737,7 +1762,7 @@
             onerror="this.style.display='none'">
         <div class="loader-title">MAHAVAJIRAVUDH STUDENT COMMITTEE</div>
         <div class="loader-bar-wrap">
-            <div class="loader-bar-fill" id="loaderBarFill"></div>
+            <div class="loader-bar-fill"></div>
         </div>
     </div>
 
@@ -1776,7 +1801,7 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" id="nav-system-report" href="#" onclick="navigateToPage('system-report'); return false;">แจ้งอุปกรณ์ชำรุด/เสียหาย</a>
                             <a class="dropdown-item" id="nav-system-election" href="#" onclick="navigateToPage('system-election'); return false;">แจ้งผลการเลือกตั้ง</a>
-                            <a class="dropdown-item" id="nav-portfolio" href="https://mahavajiravudh-digital-portfolio-hub.vercel.app/" ; return false;">ระแบบแชร์แฟ้มสะสมผลงาน</a>
+                            <a class="dropdown-item" id="nav-portfolio" href="https://mahavajiravudh-digital-portfolio-hub.vercel.app/" target="_blank">ระแบบแชร์แฟ้มสะสมผลงาน</a>
                         </div>
                     </li>
                     <li class="menu-item">
@@ -1992,15 +2017,15 @@
             if (newsBannerTimer) { clearInterval(newsBannerTimer); newsBannerTimer = null; }
 
             setTimeout(() => {
-                currentPage = pageName;
+                currentPage = pageName.toLowerCase();
                 currentTypeFilter = subFilter;
                 searchQuery = '';
                 document.getElementById('searchInput').value = '';
 
                 // จัดการ Active Navigation Style
                 document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('active'));
-                const activeNavMap = { 'home': 'nav-home', 'Policy': 'nav-policy', 'policy': 'nav-policy', 'Gallery': 'nav-gallery', 'about us': 'nav-about', 'directory': 'nav-about', 'contact': 'nav-contact' };
-                if(activeNavMap[pageName]) document.getElementById(activeNavMap[pageName]).classList.add('active');
+                const activeNavMap = { 'home': 'nav-home', 'policy': 'nav-policy', 'gallery': 'nav-gallery', 'about us': 'nav-about', 'directory': 'nav-about' };
+                if (activeNavMap[currentPage]) document.getElementById(activeNavMap[currentPage]).classList.add('active');
 
                 container.classList.remove('page-exit');
                 container.classList.add('page-enter');
@@ -2280,7 +2305,7 @@
             // ฟิลเตอร์คัดกรองแถวข้อมูลจาก Page และคำค้นหา
             let filteredRows = globalRawData.filter(row => {
                 if ((row.Type || '').toString().trim().toLowerCase() === 'news') return false;
-                let matchPage = row.Page && row.Page.toString().trim().toLowerCase() === currentPage.toLowerCase();
+                let matchPage = row.Page && row.Page.toString().trim().toLowerCase() === currentPage;
                 
                 // กรองตาม Type (subFilter จากเมนู dropdown)
                 let matchType = true;
@@ -2347,7 +2372,7 @@
                         </div>
                     `;
                 } 
-                else if (currentPage === 'Gallery' || cardType.toLowerCase() === 'review') {
+                else if (currentPage === 'gallery' || cardType.toLowerCase() === 'review') {
                     // โมดูลดึงรูปภาพแสดงผลใน Gallery บล๊อกสลับหน้ากาก
                     let imgUrl = row.IconURL;
                     if(imgUrl) {
@@ -2386,7 +2411,7 @@
                         `;
                     } else {
                         card.innerHTML = `
-                            <div class="hero-content">
+                            <div class="card-body">
                                 ${innerContent}
                                 ${row.LinkURL && !(cardType.toLowerCase() === 'hero' || cardType.toLowerCase() === 'hero-banner') ? `<a href="${row.LinkURL}" target="_blank" class="card-link-btn">${staticLangPack[currentLang].readMore} <i class="fa-solid fa-arrow-up-right-from-square"></i></a>` : ''}
                             </div>
@@ -2728,8 +2753,9 @@
 
         // --- 5. การสลับธีม (Dark / Light Mode) ---
         const savedTheme = localStorage.getItem('theme');
-        if(savedTheme==='dark'){
-            document.documentElement.setAttribute('data-theme','dark');
+        if (savedTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById('themeToggleBtn').innerHTML = '<i class="fa-solid fa-sun"></i>';
         }
         document.getElementById('themeToggleBtn').addEventListener('click', function() {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -2763,7 +2789,7 @@
         // ชื่อหน้าสวยงาม
         const pageLabelMap = {
             'home': 'หน้าแรก', 'policy': 'นโยบาย', 'gallery': 'ประมวลภาพ',
-            'about us': 'เกี่ยวกับ', 'directory': 'ทำเนียบ', 'contact': 'ติดต่อ',
+            'about us': 'เกี่ยวกับเรา', 'directory': 'ทำเนียบ', 'contact': 'ติดต่อ',
             'news': 'ข่าวสาร',
         };
 
@@ -2832,9 +2858,9 @@
         }
 
         function handleSearchResultClick(el) {
-            const page = el.getAttribute('data-page') || 'home';
+            const page = (el.getAttribute('data-page') || 'home').trim().toLowerCase();
             closeSearchDropdown();
-            navigateToPage(page.trim().toLowerCase() === 'policy' ? 'policy' : page.trim());
+            navigateToPage(page);
         }
 
         function closeSearchDropdown() {
