@@ -1722,31 +1722,183 @@
         .news-banner-placeholder i { font-size: 36px; color: var(--accent); opacity: 0.4; }
         .news-banner-placeholder p { font-size: 14px; }
     
-/* MOBILE IMPROVEMENTS */
-.mobile-menu-toggle{display:none}
-@media (max-width:768px){
-    .nav-container{padding:10px 14px;flex-wrap:wrap}
-    .brand-text h1{font-size:13px}
-    .brand-text p{font-size:10px}
-    nav{width:auto}
-    .nav-actions{gap:6px;margin-left:6px}
-    .search-container.active .search-input{width:140px}
-    main{padding:0 12px;margin-top:80px}
-    .bento-card{padding:16px}
-    .card-title{font-size:16px}
-    .type-section-title .card-title,.dir-section-header h2{font-size:28px}
-    .news-slide-content{padding:16px}
-    .footer-container{gap:24px}
-    .detail-modal-box{max-width:95vw}
-    .search-results-dropdown{width:92vw;right:-10px}
+/* ===== MOBILE FIX PACK ===== */
+@media (max-width: 768px){
+
+header{width:100%;overflow:hidden;}
+.nav-container{
+    padding:10px 12px !important;
+    gap:8px;
 }
+
+.brand{
+    min-width:0;
+    flex:1;
+}
+
+.brand img{
+    width:38px !important;
+    height:38px !important;
+}
+
+.brand-text h1{
+    font-size:13px !important;
+    line-height:1.2 !important;
+}
+
+.brand-text p{
+    font-size:10px !important;
+    line-height:1.2 !important;
+}
+
+.nav-actions{
+    gap:4px !important;
+    margin-left:4px !important;
+}
+
+.action-icon-btn,
+.search-btn{
+    width:34px !important;
+    height:34px !important;
+}
+
+main{
+    margin-top:78px !important;
+    padding:0 12px !important;
+}
+
+.bento-grid{
+    grid-template-columns:1fr !important;
+    gap:14px !important;
+}
+
+.bento-card{
+    padding:16px !important;
+}
+
+.card-title{
+    font-size:16px !important;
+    word-break:break-word;
+}
+
+.type-section-title .card-title,
+.dir-section-header h2{
+    font-size:28px !important;
+}
+
+.type-hero .hero-content,
+.type-hero-banner .hero-content{
+    padding:22px !important;
+}
+
+.type-hero .card-title,
+.type-hero-banner .card-title{
+    font-size:32px !important;
+    line-height:1.1 !important;
+}
+
+.news-banner-section{
+    aspect-ratio:4/3 !important;
+}
+
+.news-slide-content{
+    padding:16px !important;
+}
+
+.search-results-dropdown{
+    width:calc(100vw - 24px) !important;
+    max-width:none !important;
+    right:-8px !important;
+}
+
+.footer-container{
+    grid-template-columns:1fr !important;
+    gap:20px !important;
+}
+
+.footer-brand,
+.footer-links{
+    word-break:break-word;
+}
+
+.detail-modal-box{
+    width:100% !important;
+    max-height:95vh !important;
+    border-radius:18px !important;
+}
+
+.detail-modal-body{
+    flex-direction:column !important;
+    padding:18px !important;
+    gap:18px !important;
+}
+
+.dm-left{
+    width:100% !important;
+}
+
+.dm-big-photo{
+    width:140px !important;
+    height:180px !important;
+}
+
+.directory-grid{
+    grid-template-columns:1fr !important;
+}
+
+.policy-full-grid{
+    grid-template-columns:1fr !important;
+}
+
+.marquee-photo{
+    width:170px !important;
+    height:230px !important;
+}
+
+.policy-slide-card{
+    width:220px !important;
+}
+
+.messenger-floating{
+    width:50px !important;
+    height:50px !important;
+    right:16px !important;
+    bottom:16px !important;
+}
+
+img{
+    max-width:100%;
+    height:auto;
+}
+}
+
 @media (max-width:480px){
-    .brand img{width:38px;height:38px}
-    .brand-text h1{font-size:12px}
-    .brand-text p{display:none}
-    .action-icon-btn,.search-btn{width:34px;height:34px}
-    .type-hero .card-title,.type-hero-banner .card-title{font-size:32px!important}
-    .type-hero .hero-content,.type-hero-banner .hero-content{padding:20px}
+
+.brand-text h1{font-size:11px !important;}
+.brand-text p{display:none !important;}
+
+.type-hero .card-title,
+.type-hero-banner .card-title{
+    font-size:26px !important;
+}
+
+.news-banner-section{
+    aspect-ratio:1/1 !important;
+}
+
+.bento-card{
+    border-radius:14px !important;
+}
+
+.card-desc,
+.card-subtitle,
+.policy-full-card p{
+    font-size:12px !important;
+}
+
+.search-container.active .search-input{
+    width:150px !important;
+}
 }
 
 </style>
