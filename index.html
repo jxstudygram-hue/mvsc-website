@@ -2,7 +2,7 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>คณะกรรมการนักเรียน โรงเรียนมหาวชิราวุธ จังหวัดสงขลา</title>
     <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=1sKtFgqq3E8DAzQ5SNLPlZAabaUoAJjpV&sz=w400">
 
@@ -41,6 +41,11 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Kanit', sans-serif;
+        }
+
+        html {
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
         }
 
         body {
@@ -243,10 +248,13 @@
 
         /* Search Results Dropdown */
         .search-results-dropdown {
-            position: absolute;
-            top: calc(100% + 8px);
-            right: 0;
-            width: 360px;
+            position: fixed;
+            top: 60px;
+            left: 10px;
+            right: 10px;
+            width: auto;
+            max-width: 360px;
+            margin-left: auto;
             background: var(--bg-bento);
             border: 1px solid var(--border-color);
             border-radius: 16px;
@@ -540,7 +548,7 @@
         .type-hero.span-2-2, .type-hero-banner.span-2-2 {
             grid-column: 1 / -1;
             grid-row: span 1;
-            min-height: 500px;
+            min-height: calc(500px);
             border-radius: 20px;
             padding: 0;
             justify-content: flex-end;
@@ -1305,21 +1313,372 @@
             border-radius: 10px;
         }
 
-        /* Responsive */
+        /* ── MOBILE HAMBURGER MENU ── */
+
+        /* ── Animated hamburger icon (3 bars → X) ── */
+        .mobile-menu-btn {
+            display: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            transition: background 0.3s ease;
+            flex-shrink: 0;
+        }
+        .mobile-menu-btn:hover { background: rgba(67, 56, 202, 0.08); }
+        .mobile-menu-btn:active { transform: scale(0.92); }
+
+        /* SVG burger bars */
+        .burger-icon {
+            width: 22px;
+            height: 16px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .burger-bar {
+            display: block;
+            width: 100%;
+            height: 2px;
+            border-radius: 2px;
+            background: var(--text-secondary);
+            transform-origin: center;
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                        opacity   0.25s ease,
+                        width     0.3s ease;
+        }
+        /* open state → X */
+        .mobile-menu-btn.is-open .burger-bar:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .mobile-menu-btn.is-open .burger-bar:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .mobile-menu-btn.is-open .burger-bar:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* ── Overlay ── */
+        .mobile-nav-drawer {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 2500;
+            pointer-events: none;
+            visibility: hidden;
+        }
+        .mobile-nav-drawer.open {
+            pointer-events: auto;
+            visibility: visible;
+        }
+        .mobile-nav-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.55);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+        .mobile-nav-drawer.open .mobile-nav-overlay {
+            opacity: 1;
+        }
+
+        /* ── Panel slide-in ── */
+        .mobile-nav-panel {
+            position: absolute;
+            top: 0; right: 0; bottom: 0;
+            width: 78%;
+            max-width: 300px;
+            background: var(--bg-bento);
+            border-left: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            box-shadow: -12px 0 48px rgba(15, 23, 42, 0.18);
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .mobile-nav-drawer.open .mobile-nav-panel {
+            transform: translateX(0);
+        }
+
+        /* ── Menu items stagger-in ── */
+        .mobile-nav-drawer.open .mobile-menu-list > li {
+            animation: mobItemIn 0.3s ease both;
+        }
+        .mobile-nav-drawer.open .mobile-menu-list > li:nth-child(1) { animation-delay: 0.08s; }
+        .mobile-nav-drawer.open .mobile-menu-list > li:nth-child(2) { animation-delay: 0.12s; }
+        .mobile-nav-drawer.open .mobile-menu-list > li:nth-child(3) { animation-delay: 0.16s; }
+        .mobile-nav-drawer.open .mobile-menu-list > li:nth-child(4) { animation-delay: 0.20s; }
+        .mobile-nav-drawer.open .mobile-menu-list > li:nth-child(5) { animation-delay: 0.24s; }
+        .mobile-nav-drawer.open .mobile-menu-list > li:nth-child(6) { animation-delay: 0.28s; }
+        @keyframes mobItemIn {
+            from { opacity: 0; transform: translateX(18px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+
+        .mobile-nav-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 8px;
+        }
+        .mobile-nav-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .mobile-nav-close {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .mobile-nav-close:hover {
+            background: rgba(67, 56, 202, 0.08);
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+        .mobile-menu-list {
+            list-style: none;
+            padding: 0 12px;
+            flex: 1;
+        }
+        .mobile-menu-list > li {
+            margin-bottom: 2px;
+        }
+        /* parent row (with or without children) */
+        .mob-parent {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 12px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 15px;
+            border-radius: 10px;
+            transition: var(--transition);
+            width: 100%;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'Kanit', sans-serif;
+            text-align: left;
+        }
+        .mob-parent:hover, .mob-parent.open {
+            background: rgba(67, 56, 202, 0.06);
+            color: var(--primary);
+        }
+        .mob-parent i.mob-icon {
+            width: 20px;
+            text-align: center;
+            color: var(--accent);
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .mob-parent span { flex: 1; }
+        .mob-chevron {
+            font-size: 11px;
+            transition: transform 0.25s ease;
+            color: var(--text-secondary);
+            flex-shrink: 0;
+        }
+        .mob-parent.open .mob-chevron { transform: rotate(180deg); }
+        /* sub-menu */
+        .mob-sub {
+            list-style: none;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.3s ease;
+            padding-left: 32px;
+        }
+        .mob-sub.open { max-height: 400px; }
+        .mob-sub li { margin-bottom: 1px; }
+        .mob-sub a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 12px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 13.5px;
+            border-radius: 8px;
+            transition: var(--transition);
+            border-left: 2px solid var(--border-color);
+            margin-left: 4px;
+        }
+        .mob-sub a:hover {
+            background: rgba(67, 56, 202, 0.05);
+            color: var(--primary);
+            border-left-color: var(--accent);
+        }
+        /* plain link (no dropdown) */
+        .mob-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 12px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 15px;
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+        .mob-link:hover { background: rgba(67,56,202,0.06); color: var(--primary); }
+        .mob-link i { width: 20px; text-align: center; color: var(--accent); font-size: 14px; }
+
+        /* ── RESPONSIVE ── */
+
+        /* Tablet landscape */
         @media (max-width: 1024px) {
             .bento-grid { grid-template-columns: repeat(2, 1fr); }
             .span-full, .type-section-title { grid-column: span 2; }
         }
+
+        /* Tablet portrait + large phones */
         @media (max-width: 768px) {
+            /* --- Navbar --- */
             .menu-list { display: none; }
-            .bento-grid { grid-template-columns: 1fr; }
-            .span-full, .span-2-2, .span-2-1, .span-1-2, .span-1-1, .type-section-title { grid-column: span 1; grid-row: span 1; }
-            .footer-container { grid-template-columns: 1fr; }
-            .directory-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-            .policy-full-grid { grid-template-columns: 1fr; }
+            .mobile-menu-btn { display: flex; }
+            .nav-container { padding: 8px 14px; }
+            .brand-text h1 { font-size: 13px; }
+            .brand-text p { display: none; }
+            .brand img { width: 36px; height: 36px; }
+            .search-container.active .search-input { width: 130px; }
+
+            /* --- Main --- */
+            main {
+                margin: 64px auto 24px auto;
+                padding: 0 12px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            /* --- Bento grid: single column --- */
+            .bento-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+            .span-full, .span-2-2, .span-2-1, .span-1-2, .span-1-1, .type-section-title {
+                grid-column: unset;
+                grid-row: unset;
+                width: 100%;
+            }
+
+            /* --- News banner: limit height on portrait --- */
+            .news-banner-section {
+                aspect-ratio: unset;
+                height: 52vw;
+                max-height: 260px;
+                min-height: 160px;
+            }
+            .news-slide-content { padding: 14px 16px; }
+            .news-slide-title { font-size: 14px; }
+
+            /* --- Section titles --- */
+            .type-section-title { background: transparent; border: none; box-shadow: none; padding: 12px 0 4px; }
+            .type-section-title .card-title { font-size: 26px; letter-spacing: -0.5px; }
+            .dir-section-header h2 { font-size: 26px; }
+
+            /* --- Hero card --- */
+            .type-hero.span-full, .type-hero-banner.span-full,
+            .type-hero.span-2-2, .type-hero-banner.span-2-2 {
+                min-height: 52vw;
+                max-height: 300px;
+            }
+            .type-hero .hero-content, .type-hero-banner .hero-content { padding: 20px 18px; gap: 6px; }
+            .type-hero .card-title, .type-hero-banner .card-title { font-size: clamp(22px, 6vw, 36px); letter-spacing: -0.5px; }
+            .type-hero .card-subtitle, .type-hero-banner .card-subtitle { font-size: 13px; }
+
+            /* --- Cards --- */
+            .bento-card { padding: 16px; min-height: unset; }
+            .card-title { font-size: 16px; }
+            .card-subtitle { font-size: 12px; }
+            .card-desc { font-size: 12px; }
+
+            /* --- Member detail modal --- */
+            .detail-modal-body { flex-direction: column; padding: 24px 16px; gap: 16px; align-items: center; text-align: center; }
+            .dm-left { width: 100%; }
+            .dm-big-photo { width: 140px; height: 190px; }
+            .dm-name { font-size: 20px; }
+            .dm-ig-modal-btn { align-self: center; }
+
+            /* --- News modal --- */
+            .bento-modal { padding: 20px 16px; width: 96%; border-radius: 16px; max-height: 90vh; overflow-y: auto; }
+            .modal-img-placeholder { height: 180px; }
+
+            /* --- Footer --- */
+            .footer-container { grid-template-columns: 1fr; gap: 24px; }
+            footer { padding: 32px 14px 20px; }
+
+            /* --- Directory --- */
+            .directory-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .premium-member-card { padding: 20px 14px 18px; border-radius: 20px; }
+            .pm-avatar-wrap { width: 110px; height: 110px; }
+            .premium-member-card h3 { font-size: 15px; }
+
+            /* --- Policy --- */
+            .policy-full-grid { grid-template-columns: 1fr; gap: 14px; }
+            .policy-full-card { min-height: unset; padding: 20px; }
+
+            /* --- Marquee photos --- */
+            .marquee-photo { width: 160px; height: 220px; }
+            .policy-slide-card { width: 220px; min-height: 260px; }
+
+            /* --- Floating button --- */
+            .messenger-floating { width: 48px; height: 48px; font-size: 22px; bottom: 16px; right: 14px; }
+
+            /* --- Search dropdown --- */
+            /* Search full width handled globally */
         }
+
+        /* Small phones (≤480px) */
         @media (max-width: 480px) {
+            .nav-container { padding: 7px 10px; }
+            .brand img { width: 32px; height: 32px; }
+            .brand-text h1 { font-size: 11.5px; line-height: 1.3; }
+            main { margin-top: 58px; padding: 0 10px; }
+            .bento-grid { gap: 10px; }
+
+            .news-banner-section { height: 56vw; max-height: 220px; }
+
+            .type-section-title .card-title { font-size: 22px; }
+            .dir-section-header h2 { font-size: 22px; }
+
+            /* Stack directory to 1 col on very small screens */
             .directory-grid { grid-template-columns: 1fr; }
+            .pm-avatar-wrap { width: 100px; height: 100px; }
+
+            /* Larger touch targets */
+            .mobile-menu-list a { padding: 13px 10px; font-size: 14px; }
+            .action-icon-btn { width: 34px; height: 34px; font-size: 14px; }
+            .search-btn { width: 34px; height: 34px; }
+
+            /* Hero smaller */
+            .type-hero.span-full, .type-hero-banner.span-full,
+            .type-hero.span-2-2, .type-hero-banner.span-2-2 {
+                max-height: 240px;
+            }
+            .type-hero .card-title, .type-hero-banner .card-title { font-size: clamp(18px, 5.5vw, 28px); }
         }
 
         /* ── PAGE LOADER ── */
@@ -1412,6 +1771,8 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
+            border-left: none;
+            padding-left: 0;
             margin-bottom: 8px;
         }
         .party-title-main i {
@@ -1421,6 +1782,7 @@
         .party-title-sub {
             font-size: 15px;
             color: var(--text-secondary);
+            padding-left: 0;
         }
         .marquee-wrapper {
             overflow: hidden;
@@ -1721,187 +2083,7 @@
         }
         .news-banner-placeholder i { font-size: 36px; color: var(--accent); opacity: 0.4; }
         .news-banner-placeholder p { font-size: 14px; }
-    
-/* ===== MOBILE FIX PACK ===== */
-@media (max-width: 768px){
-
-header{width:100%;overflow:hidden;}
-.nav-container{
-    padding:10px 12px !important;
-    gap:8px;
-}
-
-.brand{
-    min-width:0;
-    flex:1;
-}
-
-.brand img{
-    width:38px !important;
-    height:38px !important;
-}
-
-.brand-text h1{
-    font-size:13px !important;
-    line-height:1.2 !important;
-}
-
-.brand-text p{
-    font-size:10px !important;
-    line-height:1.2 !important;
-}
-
-.nav-actions{
-    gap:4px !important;
-    margin-left:4px !important;
-}
-
-.action-icon-btn,
-.search-btn{
-    width:34px !important;
-    height:34px !important;
-}
-
-main{
-    margin-top:78px !important;
-    padding:0 12px !important;
-}
-
-.bento-grid{
-    grid-template-columns:1fr !important;
-    gap:14px !important;
-}
-
-.bento-card{
-    padding:16px !important;
-}
-
-.card-title{
-    font-size:16px !important;
-    word-break:break-word;
-}
-
-.type-section-title .card-title,
-.dir-section-header h2{
-    font-size:28px !important;
-}
-
-.type-hero .hero-content,
-.type-hero-banner .hero-content{
-    padding:22px !important;
-}
-
-.type-hero .card-title,
-.type-hero-banner .card-title{
-    font-size:32px !important;
-    line-height:1.1 !important;
-}
-
-.news-banner-section{
-    aspect-ratio:4/3 !important;
-}
-
-.news-slide-content{
-    padding:16px !important;
-}
-
-.search-results-dropdown{
-    width:calc(100vw - 24px) !important;
-    max-width:none !important;
-    right:-8px !important;
-}
-
-.footer-container{
-    grid-template-columns:1fr !important;
-    gap:20px !important;
-}
-
-.footer-brand,
-.footer-links{
-    word-break:break-word;
-}
-
-.detail-modal-box{
-    width:100% !important;
-    max-height:95vh !important;
-    border-radius:18px !important;
-}
-
-.detail-modal-body{
-    flex-direction:column !important;
-    padding:18px !important;
-    gap:18px !important;
-}
-
-.dm-left{
-    width:100% !important;
-}
-
-.dm-big-photo{
-    width:140px !important;
-    height:180px !important;
-}
-
-.directory-grid{
-    grid-template-columns:1fr !important;
-}
-
-.policy-full-grid{
-    grid-template-columns:1fr !important;
-}
-
-.marquee-photo{
-    width:170px !important;
-    height:230px !important;
-}
-
-.policy-slide-card{
-    width:220px !important;
-}
-
-.messenger-floating{
-    width:50px !important;
-    height:50px !important;
-    right:16px !important;
-    bottom:16px !important;
-}
-
-img{
-    max-width:100%;
-    height:auto;
-}
-}
-
-@media (max-width:480px){
-
-.brand-text h1{font-size:11px !important;}
-.brand-text p{display:none !important;}
-
-.type-hero .card-title,
-.type-hero-banner .card-title{
-    font-size:26px !important;
-}
-
-.news-banner-section{
-    aspect-ratio:1/1 !important;
-}
-
-.bento-card{
-    border-radius:14px !important;
-}
-
-.card-desc,
-.card-subtitle,
-.policy-full-card p{
-    font-size:12px !important;
-}
-
-.search-container.active .search-input{
-    width:150px !important;
-}
-}
-
-</style>
+    </style>
 </head>
 <body>
 
@@ -1914,7 +2096,7 @@ img{
             onerror="this.style.display='none'">
         <div class="loader-title">MAHAVAJIRAVUDH STUDENT COMMITTEE</div>
         <div class="loader-bar-wrap">
-            <div class="loader-bar-fill"></div>
+            <div class="loader-bar-fill" id="loaderBarFill"></div>
         </div>
     </div>
 
@@ -1953,7 +2135,7 @@ img{
                         <div class="dropdown-menu">
                             <a class="dropdown-item" id="nav-system-report" href="#" onclick="navigateToPage('system-report'); return false;">แจ้งอุปกรณ์ชำรุด/เสียหาย</a>
                             <a class="dropdown-item" id="nav-system-election" href="#" onclick="navigateToPage('system-election'); return false;">แจ้งผลการเลือกตั้ง</a>
-                            <a class="dropdown-item" id="nav-portfolio" href="https://mahavajiravudh-digital-portfolio-hub.vercel.app/" target="_blank">ระแบบแชร์แฟ้มสะสมผลงาน</a>
+                            <a class="dropdown-item" id="nav-portfolio" href="https://mahavajiravudh-digital-portfolio-hub.vercel.app/" ; return false;">ระแบบแชร์แฟ้มสะสมผลงาน</a>
                         </div>
                     </li>
                     <li class="menu-item">
@@ -1978,10 +2160,101 @@ img{
                     </div>
                     <button class="action-icon-btn" id="themeToggleBtn"><i class="fa-solid fa-moon"></i></button>
                     <button class="action-icon-btn lang-btn" id="langToggleBtn">EN</button>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="เปิดเมนู">
+                        <span class="burger-icon">
+                            <span class="burger-bar"></span>
+                            <span class="burger-bar"></span>
+                            <span class="burger-bar"></span>
+                        </span>
+                    </button>
                 </div>
             </nav>
         </div>
     </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+        <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+        <div class="mobile-nav-panel">
+            <div class="mobile-nav-header">
+                <span class="mobile-nav-title">เมนูหลัก</span>
+                <button class="mobile-nav-close" id="mobileNavClose"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <ul class="mobile-menu-list">
+
+                <!-- หน้าแรก -->
+                <li>
+                    <a class="mob-link" href="#" onclick="navigateToPage('home'); closeMobileMenu(); return false;">
+                        <i class="fa-solid fa-house"></i> หน้าแรก
+                    </a>
+                </li>
+
+                <!-- ข่าวสาร -->
+                <li>
+                    <button class="mob-parent" onclick="toggleMobSub(this)">
+                        <i class="fa-solid fa-newspaper mob-icon"></i>
+                        <span>ข่าวสาร</span>
+                        <i class="fa-solid fa-chevron-down mob-chevron"></i>
+                    </button>
+                    <ul class="mob-sub">
+                        <li><a href="#" onclick="navigateToPage('news-general'); closeMobileMenu(); return false;">ข่าวประชาสัมพันธ์</a></li>
+                        <li><a href="#" onclick="navigateToPage('news-announce'); closeMobileMenu(); return false;">ประกาศคณะกรรมการนักเรียน</a></li>
+                        <li><a href="#" onclick="navigateToPage('policy'); closeMobileMenu(); return false;">งานนโยบาย</a></li>
+                    </ul>
+                </li>
+
+                <!-- กิจกรรมนักเรียน -->
+                <li>
+                    <button class="mob-parent" onclick="toggleMobSub(this)">
+                        <i class="fa-solid fa-calendar-days mob-icon"></i>
+                        <span>กิจกรรมนักเรียน</span>
+                        <i class="fa-solid fa-chevron-down mob-chevron"></i>
+                    </button>
+                    <ul class="mob-sub">
+                        <li><a href="#" onclick="navigateToPage('activity-makewish'); closeMobileMenu(); return false;">Make A Wish</a></li>
+                        <li><a href="#" onclick="navigateToPage('activity-other'); closeMobileMenu(); return false;">อื่นๆ</a></li>
+                    </ul>
+                </li>
+
+                <!-- ประมวลภาพ -->
+                <li>
+                    <a class="mob-link" href="#" onclick="navigateToPage('Gallery'); closeMobileMenu(); return false;">
+                        <i class="fa-solid fa-images"></i> ประมวลภาพ
+                    </a>
+                </li>
+
+                <!-- ระบบ -->
+                <li>
+                    <button class="mob-parent" onclick="toggleMobSub(this)">
+                        <i class="fa-solid fa-gear mob-icon"></i>
+                        <span>ระบบ</span>
+                        <i class="fa-solid fa-chevron-down mob-chevron"></i>
+                    </button>
+                    <ul class="mob-sub">
+                        <li><a href="#" onclick="navigateToPage('system-report'); closeMobileMenu(); return false;">แจ้งอุปกรณ์ชำรุด/เสียหาย</a></li>
+                        <li><a href="#" onclick="navigateToPage('system-election'); closeMobileMenu(); return false;">แจ้งผลการเลือกตั้ง</a></li>
+                        <li><a href="https://mahavajiravudh-digital-portfolio-hub.vercel.app/" target="_blank">ระบบแชร์แฟ้มสะสมผลงาน</a></li>
+                    </ul>
+                </li>
+
+                <!-- เกี่ยวกับเรา -->
+                <li>
+                    <button class="mob-parent" onclick="toggleMobSub(this)">
+                        <i class="fa-solid fa-circle-info mob-icon"></i>
+                        <span>เกี่ยวกับเรา</span>
+                        <i class="fa-solid fa-chevron-down mob-chevron"></i>
+                    </button>
+                    <ul class="mob-sub">
+                        <li><a href="#" onclick="navigateToPage('about-symbol'); closeMobileMenu(); return false;">สัญลักษณ์</a></li>
+                        <li><a href="#" onclick="navigateToPage('about-vision'); closeMobileMenu(); return false;">วิสัยทัศน์/พันธกิจ/เป้าประสงค์</a></li>
+                        <li><a href="#" onclick="navigateToPage('about-structure'); closeMobileMenu(); return false;">โครงสร้างคณะกรรมการนักเรียน</a></li>
+                        <li><a href="#" onclick="navigateToPage('directory'); closeMobileMenu(); return false;">ทำเนียบคณะกรรมการนักเรียน</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </div>
 
     <main>
         <div class="bento-grid" id="bento-main-container">
@@ -2169,15 +2442,15 @@ img{
             if (newsBannerTimer) { clearInterval(newsBannerTimer); newsBannerTimer = null; }
 
             setTimeout(() => {
-                currentPage = pageName.toLowerCase();
+                currentPage = pageName;
                 currentTypeFilter = subFilter;
                 searchQuery = '';
                 document.getElementById('searchInput').value = '';
 
                 // จัดการ Active Navigation Style
                 document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('active'));
-                const activeNavMap = { 'home': 'nav-home', 'policy': 'nav-policy', 'gallery': 'nav-gallery', 'about us': 'nav-about', 'directory': 'nav-about' };
-                if (activeNavMap[currentPage]) document.getElementById(activeNavMap[currentPage]).classList.add('active');
+                const activeNavMap = { 'home': 'nav-home', 'Policy': 'nav-policy', 'policy': 'nav-policy', 'Gallery': 'nav-gallery', 'about us': 'nav-about', 'directory': 'nav-about', 'contact': 'nav-contact' };
+                if(activeNavMap[pageName]) document.getElementById(activeNavMap[pageName]).classList.add('active');
 
                 container.classList.remove('page-exit');
                 container.classList.add('page-enter');
@@ -2457,7 +2730,7 @@ img{
             // ฟิลเตอร์คัดกรองแถวข้อมูลจาก Page และคำค้นหา
             let filteredRows = globalRawData.filter(row => {
                 if ((row.Type || '').toString().trim().toLowerCase() === 'news') return false;
-                let matchPage = row.Page && row.Page.toString().trim().toLowerCase() === currentPage;
+                let matchPage = row.Page && row.Page.toString().trim().toLowerCase() === currentPage.toLowerCase();
                 
                 // กรองตาม Type (subFilter จากเมนู dropdown)
                 let matchType = true;
@@ -2524,7 +2797,7 @@ img{
                         </div>
                     `;
                 } 
-                else if (currentPage === 'gallery' || cardType.toLowerCase() === 'review') {
+                else if (currentPage === 'Gallery' || cardType.toLowerCase() === 'review') {
                     // โมดูลดึงรูปภาพแสดงผลใน Gallery บล๊อกสลับหน้ากาก
                     let imgUrl = row.IconURL;
                     if(imgUrl) {
@@ -2563,7 +2836,7 @@ img{
                         `;
                     } else {
                         card.innerHTML = `
-                            <div class="card-body">
+                            <div class="hero-content">
                                 ${innerContent}
                                 ${row.LinkURL && !(cardType.toLowerCase() === 'hero' || cardType.toLowerCase() === 'hero-banner') ? `<a href="${row.LinkURL}" target="_blank" class="card-link-btn">${staticLangPack[currentLang].readMore} <i class="fa-solid fa-arrow-up-right-from-square"></i></a>` : ''}
                             </div>
@@ -2905,9 +3178,8 @@ img{
 
         // --- 5. การสลับธีม (Dark / Light Mode) ---
         const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            document.getElementById('themeToggleBtn').innerHTML = '<i class="fa-solid fa-sun"></i>';
+        if(savedTheme==='dark'){
+            document.documentElement.setAttribute('data-theme','dark');
         }
         document.getElementById('themeToggleBtn').addEventListener('click', function() {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -2941,7 +3213,7 @@ img{
         // ชื่อหน้าสวยงาม
         const pageLabelMap = {
             'home': 'หน้าแรก', 'policy': 'นโยบาย', 'gallery': 'ประมวลภาพ',
-            'about us': 'เกี่ยวกับเรา', 'directory': 'ทำเนียบ', 'contact': 'ติดต่อ',
+            'about us': 'เกี่ยวกับ', 'directory': 'ทำเนียบ', 'contact': 'ติดต่อ',
             'news': 'ข่าวสาร',
         };
 
@@ -3010,9 +3282,9 @@ img{
         }
 
         function handleSearchResultClick(el) {
-            const page = (el.getAttribute('data-page') || 'home').trim().toLowerCase();
+            const page = el.getAttribute('data-page') || 'home';
             closeSearchDropdown();
-            navigateToPage(page);
+            navigateToPage(page.trim().toLowerCase() === 'policy' ? 'policy' : page.trim());
         }
 
         function closeSearchDropdown() {
@@ -3174,6 +3446,44 @@ img{
 
         // เริ่มสตาร์ทระบบเว็บแอปพลิเคชัน
         loadGoogleSheetsData().finally(dismissLoader);
+
+        // ── MOBILE HAMBURGER MENU ──
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNavDrawer = document.getElementById('mobileNavDrawer');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+        const mobileNavClose = document.getElementById('mobileNavClose');
+
+        function openMobileMenu() {
+            mobileNavDrawer.classList.add('open');
+            mobileMenuBtn.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMobileMenu() {
+            mobileNavDrawer.classList.remove('open');
+            mobileMenuBtn.classList.remove('is-open');
+            document.body.style.overflow = '';
+        }
+        function toggleMobSub(btn) {
+            const sub = btn.nextElementSibling;
+            const isOpen = sub.classList.contains('open');
+            // ปิดทุก sub ก่อน
+            document.querySelectorAll('.mob-sub.open').forEach(el => el.classList.remove('open'));
+            document.querySelectorAll('.mob-parent.open').forEach(el => el.classList.remove('open'));
+            // เปิดอันที่กด (ถ้าไม่ใช่อันที่เปิดอยู่)
+            if (!isOpen) {
+                sub.classList.add('open');
+                btn.classList.add('open');
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        mobileNavClose.addEventListener('click', closeMobileMenu);
+        mobileNavOverlay.addEventListener('click', closeMobileMenu);
+
+        // Close mobile menu on ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeMobileMenu();
+        });
     </script>
 </body>
 </html>
